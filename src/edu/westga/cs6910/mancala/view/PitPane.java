@@ -60,8 +60,6 @@ public class PitPane extends GridPane implements InvalidationListener {
 
 	@Override
 	public void invalidated(Observable theObservable) {
-		// TODO: Display the current number of stones inside
-		//		 this pit
 		int amountOfStones = this.theGame.getStones(this.pitNumber);
 		this.lblNumberOfStones.setText("Stones: " + amountOfStones);
 	}
