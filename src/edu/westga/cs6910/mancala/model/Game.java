@@ -63,7 +63,21 @@ public class Game implements Observable {
 		// pit specified and distribute them, one at
 		// a time into each pit (including current player's store, but not opponent's store)
 		// in counter-clockwise order
-
+		int amountOfStones = this.theBoard[pitNumber];
+		this.theBoard[pitNumber] = 0;
+		int pitToSkip = 0;
+		
+		if (pitNumber < this.theBoard.length / 2) {
+			pitToSkip = this.theBoard.length - 1;
+		} else {
+			pitToSkip = this.theBoard.length / 2 - 1;
+		}
+		
+		int currentPit = pitNumber + 1;
+		
+		while (amountOfStones > 0) {
+			
+		}
 	}
 
 	/**
@@ -204,7 +218,7 @@ public class Game implements Observable {
 		// the current player. Note that in order to access the
 		// object inside of the ObjectProperty, you'll need to use
 		// getValue() and setValue()
-
+		
 	}
 
 	/**
