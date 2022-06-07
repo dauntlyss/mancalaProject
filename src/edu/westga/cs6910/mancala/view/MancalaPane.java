@@ -37,20 +37,31 @@ public class MancalaPane extends BorderPane {
 	 * @ensures	 the pane is displayed properly
 	 */
 	public MancalaPane(Game theGame) {
+		if (theGame == null) {
+			throw new IllegalArgumentException("Invalid Game object");
+		}
+		
 		this.theGame = theGame;
-		
-		this.pnContent = new GridPane();
-		
+		this.pnContent = new GridPane();		
 		this.addFirstPlayerChooserPane(theGame);		
+	
+		this.pnComputerPlayer = new ComputerPane(theGame);
+		HBox leftBox = new HBox();
+		leftBox.getStyleClass().add("pane-border");
+		leftBox.getChildren().add(this.pnComputerPlayer);
+		this.pnContent.add(leftBox, 0, 1);
 		
-		// TODO: 1. Using the 'first player chooser pane' as a guide
-		//  Create an HBox with the appropriate style, then make a computer
-		//	player pane and add it to the HBox. Finally add the HBox to the content pane	
+		this.pnHumanPlayer = new HumanPane(theGame);
+		HBox rightBox = new HBox();
+		rightBox.getStyleClass().add("pane-border");
+		rightBox.getChildren().add(this.pnHumanPlayer);
+		this.pnContent.add(rightBox, 0, 2);
 		
-		// TODO: 2. Using the other panes as a guide, create and add a human pane
-
-		// TODO: 3. Using the other panes as a guide, create and add a status pane	
-		
+		this.pnGameInfo = new StatusPane(theGame);
+		HBox bottomBox = new HBox();
+		bottomBox.getStyleClass().add("pane-border");
+		bottomBox.getChildren().add(this.pnGameInfo);
+		this.pnContent.add(bottomBox, 0, 3);
 		
 		this.setCenter(this.pnContent);
 	}
