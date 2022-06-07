@@ -100,12 +100,15 @@ public class MancalaPane extends BorderPane {
 			this.radHumanPlayer = new RadioButton(this.theHuman.getName() + " first");	
 			this.radHumanPlayer.setOnAction(new HumanFirstListener());
 			
-			// TODO: Instantiate the computer player button and add 
-			//		 ComputerFirstListener as its action listener.
+			this.radComputerPlayer = new RadioButton(this.theComputer.getName() + " first");
+			this.radComputerPlayer.setOnAction(new ComputerFirstListener());
 			
-			// TODO: Create a ToggleGroup and add the 2 radio buttons to it.
+			ToggleGroup buttonGroup = new ToggleGroup();
+			this.radComputerPlayer.setToggleGroup(buttonGroup);
+			this.radHumanPlayer.setToggleGroup(buttonGroup);
 			
-			// TODO: Add the 2 radio buttons to this pane.
+			this.add(this.radHumanPlayer, 0, 0);
+			this.add(this.radComputerPlayer, 1, 0);
 			
 		}
 		
