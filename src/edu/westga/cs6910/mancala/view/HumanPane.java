@@ -20,8 +20,8 @@ import javafx.scene.layout.HBox;
  * turn.
  * Started by CS6910.  Fill your name into Javadoc below
  * 
- * @author 	
- * @version 
+ * @author Alyssa Harris
+ * @version 06/07/2022
  */
 public class HumanPane extends GridPane implements InvalidationListener {
 	private ComboBox<String> cmbPitChoice;
@@ -121,12 +121,33 @@ public class HumanPane extends GridPane implements InvalidationListener {
 		 * @return the selected pit number, if valid -1, otherwise
 		 */
 		private int getSelectedPitNumber() {
-			// TODO: Check to be sure that the user selected a valid pit
+			// ********** DONE ******** TODO: Check to be sure that the user selected a valid pit
 			// (one that has a pit number with stones inside)
 			// If it is an invalid pit, show an Alert
 			// to offer a descriptive error message so that they'll
 			// know what went wrong and how to fix it.
-			return -1;
+			Object pitChoice = HumanPane.this.cmbPitChoice.getValue();
+			
+			if (pitChoice == null || pitChoice.toString().equals("Please select")) {
+				Alert pitSelectionAlert = new Alert(Alert.AlertType.ERROR);
+				pitSelectionAlert.setTitle("Mancala");
+				pitSelectionAlert.setHeaderText("Please select a valid pit.");
+				pitSelectionAlert.showAndWait();
+				return -1;
+			}
+			
+			String pitChoiceString = pitChoice.toString();
+			int pitNumber = Integer.parseInt(pitChoiceString.replaceAll("Pit ", "").trim());
+			
+			if (HumanPane.this.theGame.getStones(pitNumber) <= 0) {
+				Alert noStonesAlert = new Alert(Alert.AlertType.ERROR);
+				noStonesAlert.setTitle("Mancala");
+				noStonesAlert.setHeaderText("This pit is empty! Please select a pit that contains stones.");
+				noStonesAlert.showAndWait();
+				return -1;
+			}
+			
+			return pitNumber;
 		}
 	}
 }
