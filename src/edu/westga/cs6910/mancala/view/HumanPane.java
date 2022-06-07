@@ -129,7 +129,7 @@ public class HumanPane extends GridPane implements InvalidationListener {
 			Object pitChoice = HumanPane.this.cmbPitChoice.getValue();
 			
 			if (pitChoice == null || pitChoice.toString().equals("Please select")) {
-				Alert pitSelectionAlert = new Alert(Alert.AlertType.ERROR);
+				Alert pitSelectionAlert = new Alert(AlertType.ERROR);
 				pitSelectionAlert.setTitle("Mancala");
 				pitSelectionAlert.setHeaderText("Please select a valid pit.");
 				pitSelectionAlert.showAndWait();
@@ -140,7 +140,7 @@ public class HumanPane extends GridPane implements InvalidationListener {
 			int pitNumber = Integer.parseInt(pitChoiceString.replaceAll("Pit ", "").trim());
 			
 			if (HumanPane.this.theGame.getStones(pitNumber) <= 0) {
-				Alert noStonesAlert = new Alert(Alert.AlertType.ERROR);
+				Alert noStonesAlert = new Alert(AlertType.ERROR);
 				noStonesAlert.setTitle("Mancala");
 				noStonesAlert.setHeaderText("This pit is empty! Please select a pit that contains stones.");
 				noStonesAlert.showAndWait();
