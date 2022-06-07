@@ -59,10 +59,7 @@ public class Game implements Observable {
 		if (pitNumber < 0) {
 			throw new IllegalArgumentException("Pit number cannot be negative");
 		}
-		// TODO: Take the stones currently located in the
-		// pit specified and distribute them, one at
-		// a time into each pit (including current player's store, but not opponent's store)
-		// in counter-clockwise order
+
 		int amountOfStones = this.theBoard[pitNumber];
 		this.theBoard[pitNumber] = 0;
 		int pitToSkip = 0;
