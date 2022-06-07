@@ -102,10 +102,14 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		 */
 		@Override
 		public void handle(ActionEvent arg0) {
-			// TODO: if the game isn't finished: 
+			// *****DONE****  TODO: if the game isn't finished: 
 			//		 - Tell theGame to play a move.  Because this is
 			//		   the computer playing, just pass -1 as the 
 			//		   pit number
+
+			if (!ComputerPane.this.theGame.getIsGameOver()) {
+				ComputerPane.this.theGame.play(-1);
+			}
 
 		}
 	}
