@@ -78,9 +78,15 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 
 	@Override
 	public void invalidated(Observable arg0) {
-		// TODO: Disable this Pane if it is no longer the computer's turn, enable it if
+		// *****DONE**** TODO: Disable this Pane if it is no longer the computer's turn, enable it if
 		// it is the computer's turn
+		if (this.theGame.getIsGameOver()) {
+			this.setDisable(true);
+			return;
+		}
 
+		boolean myTurn = this.theGame.getCurrentPlayer() == this.theComputer;
+		this.setDisable(!myTurn);
 	}
 
 	/* 
