@@ -16,6 +16,8 @@ import javafx.scene.layout.HBox;
  * take its turn and that displays the setup of this player's side
  * of the board
  * 
+ * @author Alyssa Harris	
+ * @version 06/07/2022
  */
 public class ComputerPane extends GridPane implements InvalidationListener {
 
@@ -32,18 +34,33 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 	 * @requires 	theGame != null
 	 */
 	public ComputerPane(Game theGame) {
+		if (theGame == null) {
+			throw new IllegalArgumentException("Invalid Game object");
+		}		
 		this.theGame = theGame;
-		
-		// TODO: Add this object as an listener of the Game.
-		
+		//*****DONE**** TODO: Add this object as an listener of the Game.
+		this.theGame.addListener(this);
 		this.theComputer = this.theGame.getComputerPlayer();
 		
 		this.buildPane();
 	}
 	
 	private void buildPane() {
-		// TODO: Using the other pane classes as a model, build this pane.
-
+		// *****DONE**** TODO: Using the other pane classes as a model, build this pane.
+		HBox topBox = new HBox();
+		topBox.getChildren().add(new Label("Computer"));
+		this.add(topBox, 0, 0);
+		
+		this.setHgap(50);
+		
+		this.createUserInteractionArea();
+		
+		int boardSize = this.theGame.getBoardSize();
+		for (int column = boardSize - 2; column > boardSize / 2 - 1; column--) {
+			this.add(new PitPane(column, false, this.theGame), boardSize - column, 1);
+		}
+		
+		this.add(new PitPane(boardSize - 1, true, this.theGame), 0, 1);
 	}
 	
 	private void createUserInteractionArea() {
