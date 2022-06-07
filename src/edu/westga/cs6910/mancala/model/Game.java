@@ -76,7 +76,13 @@ public class Game implements Observable {
 		int currentPit = pitNumber + 1;
 		
 		while (amountOfStones > 0) {
-			
+			if (currentPit % this.theBoard.length != pitToSkip) {
+				int[] theBoard = this.theBoard;
+				int place = currentPit % this.theBoard.length;
+				theBoard[place] += 1;
+				amountOfStones -= 1;
+			}
+			currentPit += 1;
 		}
 	}
 
