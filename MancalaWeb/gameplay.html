@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mancala</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Poppins:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+    <section class="reg-nav">
+        <nav>
+            <a href="index.html"><img src="https://i.ibb.co/6RtNQGc/logo.png" alt="Mancala Site Logo"></a>
+
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="index.html#history">HISTORY</a></li>
+                    <li><a href="index.html#variations">VARIATIONS</a></li>
+                    <li><a href="gameplay.html">GAMEPLAY</a></li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+    <!-- --------Gameplay Section-------- -->
+
+    <section class="gameplay section-padding" id="gameplay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <h2 class="mb-4">Gameplay</h2>
+
+                    <p>
+                        <a href="https://en.wikipedia.org/wiki/Mancala" target="_blank">Mancala</a> is
+                        an ancient two-player strategy board game. The objective is to capture more seeds in your store (the larger hole to the rightmost of the board for each player) than your opponent. To play, a player chooses a non-empty hollow (the six holes in between the stores) on the side closest to them and picks up all the seeds within it. This process is called sowing. The player then sows a single seed into the next hollow in a counter-clockwise direction and a single seed into the next hollow until the seeds run out. The game is over when all of one player’s hollows are completely empty. The other player takes the seeds remaining in their hollows and puts those seeds in their store. Then, count up the seeds. The player with the most seeds wins. 
+                    </p>
+
+                    <p>
+                        <span class="ex">Special Rules:</span> There are a few special rules that can be added to the game to make it more strategic. 
+                        <ol class="list">
+                            <li>If the last seed in your hand lands in your store, take another turn.</li>
+                            <li>If the last seed in your hand lands in an empty hollow on your side of the board, capture all of the seeds in your opponent's hollow on the opposite side. Put those captured seeds, as well as the last seed that you just played on your side, into your store. </li>
+                        </ol>
+                    </p>
+                </div>
+
+                <div class="col-lg-5 mx-auto col-md-6 col-12">
+                    <a href="https://ibb.co/L640vqM"><img src="https://i.ibb.co/2PXF5Lw/Adobe-Stock-248756078.jpg" class="about-image img-fluid" alt="mancala board"></a>
+                </div>
+                
+            </div>
+            <div class="row gameplay-third">
+                <div class="col-lg-4 col-md-4 col-12">
+                    <h3>Kalah</h3>
+                    <p>
+                        A variation of Mancala that is commonly played in the United States. Generally, each hollow starts with 4 seeds, though for a longer game more can be added. Alternative variations of kalah allow for clockwise gameplay, instead of the general counter-clockwise play. Also, some variations of this version allow for you to sow into your opponent's store if you pass it on your turn, instead of skipping it.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+                    <h3>Oware</h3>
+                    <p>
+                        A variation of Mancala where each hollow starts with 4 seeds and the hollow you sow from is always left empty. Also, you can capture your opponents seeds whenever their hollows are brought to exactly two or three seeds with the final seed of your turn. However, if a move would capture all of your opponent's seeds, the capture is forfeited since this would prevent game continuation. The seeds are instead left on the board.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+                    <h3>Bao</h3>
+                    <p>
+                        A variation of Mancala that is played on a larger 4-by-8 board with 56-64 pieces per game. Players are allowed to chose on each turn whether they want to play clockwise or counter-clockwise for that turn. There are particular times where a capture move can be made and when things can be sown to your store. <a href="https://www.mastersofgames.com/rules/mancala-rules.htm" target="_blank">Here</a>  is a full explaination of Bao.  
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategies -->
+		<section class="faq section-padding" id="faqs">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-12">
+						<h2 class="title">Common Mancala Strategies</h2>
+						
+						<div class="accordion" id="accordionExample">
+							<div class="accordion-item">
+							  <h2 class="accordion-header" id="headingOne">
+								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+								  Strategic Opening Moves
+								</button>
+							  </h2>
+							  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+								<div class="accordion-body">
+								  Players can chose their first move so that the last seed sown ends in their store. Then, by kalah rules, the player gets another turn. On this next turn, the player can grab seeds from their rightmost hollow, which will prevent the opponent from being able to make the same opening move.
+								</div>
+							  </div>
+							</div>
+							
+							<div class="accordion-item">
+							  <h2 class="accordion-header" id="headingTwo">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								  Focus On Your Store
+								</button>
+							  </h2>
+							  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+								<div class="accordion-body">
+								  Try to focus on moves that will add as many seeds as possible to your store. When seeds go into your store, they cannot be removed. Make moves that will allow the last seed you sow to go into your store, which will give you a free turn. However, this strategy can be risky because to empties your side of the board quickly, and one side of completely empty hollows triggers the end of the game. 
+								</div>
+							  </div>
+							</div>
+							
+							<div class="accordion-item">
+							  <h2 class="accordion-header" id="headingThree">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								  Keep The Right Hollow Empty
+								</button>
+							  </h2>
+							  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+								<div class="accordion-body">
+								  Keep your rightmost hollow empty as much as possible. That way, when you sow a single seed into it, if left undisturbed by your opponent, it guarentees you a free turn on your next go. This accelerates the collection of seeds in your store.
+								</div>
+							  </div>
+							</div>
+							
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingFour">
+								  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+									Defensive or Offensive
+								  </button>
+								</h2>
+								<div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+								  <div class="accordion-body">
+									Decide whether you need to be on the defensive or the offensive. To play defensively, try not to allow for empty hollows on your opponent's side, that way, they have a harder time capturing your unused seeds. Also, try to remove your opponents ability to get a free turn by dropping seeds into the hollows that would allow your opponent to end their turn dropping into their store. To play offensively, try to make a move that lands the last seed of your turn in an empty hollow on your side, so that you can capture your opponent's unused seeds. 
+								  </div>
+								</div>
+							  </div>
+						  </div>
+
+						  <div class="accordion-item">
+							<h2 class="accordion-header" id="headingFive">
+							  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+								Be Flexible About Strategy
+							  </button>
+							</h2>
+							<div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+							  <div class="accordion-body">
+								You may need to switch strategies mid-game to ensure a win. That's fine! Try to keep seeds on your side of the board that way you have more control over your ability to strategize.
+							  </div>
+							</div>
+						  </div>
+					</div>
+				</div>
+
+			</div>
+
+		</section>
+    <div class="footer">
+        <p>Copyright &copy; 2022 Alyssa Harris Lab 00</p>
+    </div>
+
+    
+    
+</body>
+</html>
