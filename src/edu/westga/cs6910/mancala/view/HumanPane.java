@@ -121,11 +121,6 @@ public class HumanPane extends GridPane implements InvalidationListener {
 		 * @return the selected pit number, if valid -1, otherwise
 		 */
 		private int getSelectedPitNumber() {
-			// ********** DONE ******** TODO: Check to be sure that the user selected a valid pit
-			// (one that has a pit number with stones inside)
-			// If it is an invalid pit, show an Alert
-			// to offer a descriptive error message so that they'll
-			// know what went wrong and how to fix it.
 			Object pitChoice = HumanPane.this.cmbPitChoice.getValue();
 			
 			if (pitChoice == null || pitChoice.toString().equals("Please select")) {

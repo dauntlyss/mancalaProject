@@ -15,8 +15,8 @@ import javafx.scene.layout.Pane;
  * Defines a GUI for the Mancala game.
  * Started by CS6910.  Fill your name into Javadoc below
  * 
- * @author 	
- * @version 
+ * @author Alyssa Harris
+ * @version 099/07/2022
  * 
  */
 public class MancalaPane extends BorderPane {
@@ -50,6 +50,7 @@ public class MancalaPane extends BorderPane {
 		// TODO: 2. Using the other panes as a guide, create and add a human pane
 
 		// TODO: 3. Using the other panes as a guide, create and add a status pane	
+		
 		
 		this.setCenter(this.pnContent);
 	}
