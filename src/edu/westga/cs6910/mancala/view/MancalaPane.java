@@ -138,9 +138,9 @@ public class MancalaPane extends BorderPane {
 			 */
 			@Override
 			public void handle(ActionEvent event) {
+				MancalaPane.this.pnHumanPlayer.setDisable(false);
 				MancalaPane.this.pnChooseFirstPlayer.setDisable(true);
-				// TODO: Enable the human player panel and start a game
-				//		 with the human playing first.
+				MancalaPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
 
 			}
 		}
