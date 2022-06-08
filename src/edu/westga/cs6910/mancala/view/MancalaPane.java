@@ -16,7 +16,7 @@ import javafx.scene.layout.Pane;
  * Started by CS6910.  Fill your name into Javadoc below
  * 
  * @author Alyssa Harris
- * @version 099/07/2022
+ * @version 06/07/2022
  * 
  */
 public class MancalaPane extends BorderPane {
