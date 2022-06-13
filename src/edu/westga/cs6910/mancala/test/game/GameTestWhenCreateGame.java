@@ -26,7 +26,7 @@ public class GameTestWhenCreateGame {
 	}
 	
 	/**
-	 * Test method for Game classes constructor method.
+	 * Test method for Game classes constructor method and tests game board size at creation.
 	 */
 	@Test
 	public void testNewGameShouldHaveBoardSize8() {
