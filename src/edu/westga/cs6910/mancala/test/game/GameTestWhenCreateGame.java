@@ -13,16 +13,16 @@ import edu.westga.cs6910.mancala.model.Game;
  * @version 06/13/2022
  *
  */
+public class GameTestWhenCreateGame {
 
-public class GameTestGetBoardSize {
-	
 	/**
-	 * Test method for Game classes getBoardSize() method.
+	 * Test method for Game classes constructor method.
 	 */
 	@Test
-	public void testGetBoardSize() {
+	public void testShouldProduceGameWithNoScore() {
 		Game newGame = new Game();
-		assertEquals(8, newGame.getBoardSize());
+		assertEquals("Human: 0" + System.getProperty("line.separator") + 
+				"Simple computer: 0" + System.getProperty("line.separator"), newGame.toString());
 	}
 
 }
