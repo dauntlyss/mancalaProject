@@ -24,5 +24,13 @@ public class GameTestWhenCreateGame {
 		assertEquals("Human: 0" + System.getProperty("line.separator") + 
 				"Simple computer: 0" + System.getProperty("line.separator"), newGame.toString());
 	}
-
+	
+	/**
+	 * Test method for Game classes constructor method.
+	 */
+	@Test
+	public void testNewGameShouldHaveBoardSize8() {
+		Game newGame = new Game();
+		assertEquals(8, newGame.getBoardSize());
+	}
 }
