@@ -17,7 +17,7 @@ import edu.westga.cs6910.mancala.model.HumanPlayer;
 public class GameTestWhenStartNewGame {
 	
 	/**
-	 * Test method for Game classes startNewGame() method.
+	 * Test method for Game classes startNewGame() method with ComputerPlayer having the first turn.
 	 */
 	@Test
 	public void testStartNewGameWillStartNewGameWithComputerFirst() {
@@ -29,7 +29,7 @@ public class GameTestWhenStartNewGame {
 	}
 	
 	/**
-	 * Test method for Game classes startNewGame() method.
+	 * Test method for Game classes startNewGame() method with HumanPlayer having the first turn.
 	 */
 	@Test
 	public void testStartNewGameWillStartNewGameWithHumanFirst() {
@@ -41,7 +41,7 @@ public class GameTestWhenStartNewGame {
 	}
 	
 	/**
-	 * Test method for Game classes startNewGame() method.
+	 * Test method for Game classes startNewGame() method, tests that at the start of the game each pit has one stone each.
 	 */
 	@Test
 	public void testStartNewGameWillStartNewGameWithAllPitsHavingOneStoneEach() {
@@ -58,7 +58,7 @@ public class GameTestWhenStartNewGame {
 	}
 	
 	/**
-	 * Test method for Game classes startNewGame() method.
+	 * Test method for Game classes startNewGame() method, test that at the start of each game each store is empty.
 	 */
 	@Test
 	public void testStartNewGameWillStartNewGameWithAllStoresHavingZeroStonesEach() {
