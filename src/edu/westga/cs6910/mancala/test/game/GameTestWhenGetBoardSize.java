@@ -17,10 +17,10 @@ import edu.westga.cs6910.mancala.model.Game;
 public class GameTestWhenGetBoardSize {
 	
 	/**
-	 * Test method for Game classes getBoardSize() method.
+	 * Test method for Game classes getBoardSize() method returns the proper board size.
 	 */
 	@Test
-	public void testGetBoardSize() {
+	public void testGetBoardSizeIs8() {
 		Game newGame = new Game();
 		assertEquals(8, newGame.getBoardSize());
 	}
