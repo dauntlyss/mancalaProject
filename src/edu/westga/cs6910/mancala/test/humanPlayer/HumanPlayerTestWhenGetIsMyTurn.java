@@ -30,7 +30,7 @@ public class HumanPlayerTestWhenGetIsMyTurn {
 	 * Test method for getIsMyTurn method.
 	 */
 	@Test
-	public void testGetIsMyTurnIsFalseWhenComputersTurn() {
+	public void testGetIsMyTurnForHumanIsFalseWhenComputersTurn() {
 		Game newGame = new Game();
 		HumanPlayer human = new HumanPlayer("Human", newGame);
 		newGame.startNewGame(newGame.getComputerPlayer());
