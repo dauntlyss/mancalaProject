@@ -39,39 +39,5 @@ public class GameTestWhenStartNewGame {
 		assertEquals(realHumanPlayer, newGame.getCurrentPlayer());
 		
 	}
-	
-	/**
-	 * Test method for Game classes startNewGame() method, tests that at the start of the game each pit has one stone each.
-	 */
-	@Test
-	public void testStartNewGameWillStartNewGameWithAllPitsHavingOneStoneEach() {
-		Game newGame = new Game();
-		
-		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
-		
-		for (int pitNumber = 0; pitNumber < 7; pitNumber++) {
-			if (pitNumber != 3) {
-				assertEquals(1, newGame.getStones(pitNumber));
-			}
-		}
-	}
-	
-	/**
-	 * Test method for Game classes startNewGame() method, test that at the start of each game each store is empty.
-	 */
-	@Test
-	public void testStartNewGameWillStartNewGameWithAllStoresHavingZeroStonesEach() {
-		Game newGame = new Game();
-		
-		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
-		
-		for (int pitNumber = 0; pitNumber <= 7; pitNumber++) {
-			if (pitNumber == 3 || pitNumber == 7) {
-				assertEquals(0, newGame.getStones(pitNumber));
-			}
-		}
-	}
 
 }
