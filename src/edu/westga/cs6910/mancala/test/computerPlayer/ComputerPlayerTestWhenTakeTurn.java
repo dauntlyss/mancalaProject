@@ -14,9 +14,12 @@ import edu.westga.cs6910.mancala.model.Game;
  * @version Jun 14, 2022
  */
 public class ComputerPlayerTestWhenTakeTurn {
-
+	
+	/**
+	 * Test method for takeTurn method.
+	 */
 	@Test
-	public void testTakeTurnMethodTakesFromPit6OnFirstTurn() {
+	public void testTakeTurnMethodTakesFromDesignatedPit() {
 		Game newGame = new Game();
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
 		newGame.startNewGame(simpleComputer);
@@ -24,6 +27,19 @@ public class ComputerPlayerTestWhenTakeTurn {
 		int[] gameBoard = newGame.getGameBoard();
 		
 		assertEquals(0, gameBoard[6]);
+	}
+	
+	/**
+	 * Test method for takeTurn method.
+	 */
+	@Test
+	public void testTakeTurnMethodAfterComputerTakesTurnIsMyTurnIsSetToFalse() {
+		Game newGame = new Game();
+		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
+		newGame.startNewGame(simpleComputer);
+		simpleComputer.takeTurn(6);
+		
+		assertEquals(false, simpleComputer.getIsMyTurn());
 	}
 
 }
