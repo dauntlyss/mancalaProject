@@ -30,35 +30,62 @@ public class GameTestWhenGetStones {
 	 * Test method for testing the getStones(int) method, test that at the start of each game each pit amount can be retrieved and is 1.
 	 */
 	@Test
-	public void testGetStonesAtStartWillReturnOneStonePerPit() {
+	public void testGetStonesAtStartWillReturnOneStonePerPitOnHumanSide() {
 		Game newGame = new Game();
 		HumanPlayer simpleHuman = newGame.getHumanPlayer();
 		
 		newGame.startNewGame(simpleHuman);
 		
-		for (int pitNumber = 0; pitNumber < 7; pitNumber++) {
-			if (pitNumber != 3) {
-				assertEquals(1, newGame.getStones(pitNumber));
+		for (int pitNumber = 0; pitNumber < 3; pitNumber++) {
+			if (newGame.getStones(pitNumber) != 1) {
+				fail("Number of stones in " + pitNumber + "is " + newGame.getStones(pitNumber));
+			}
+		}
+		
+	}
+
+	/**
+	 * Test method for testing the getStones(int) method, test that at the start of each game each pit amount can be retrieved and is 1.
+	 */
+	@Test
+	public void testGetStonesAtStartWillReturnOneStonePerPitOnComputerSide() {
+		Game newGame = new Game();
+		HumanPlayer simpleHuman = newGame.getHumanPlayer();
+		
+		newGame.startNewGame(simpleHuman);
+		
+		for (int pitNumber = 4; pitNumber < 7; pitNumber++) {
+			if (newGame.getStones(pitNumber) != 1) {
+				fail("Number of stones in " + pitNumber + " is " + newGame.getStones(pitNumber));
 			}
 		}
 		
 	}
 	
 	/**
-	 * Test method for Game classes getStones() method, test that before the start of each game each store amount can be retrieved and is 0.
+	 * Test method for Game classes getStones() method, test that at the start of each game each store amount can be retrieved and is 0.
 	 */
 	@Test
-	public void testStartNewGameWillStartNewGameWithAllStoresHavingZeroStonesEach() {
+	public void testStartNewGameWillStartNewGameWithComputerStoresHavingZeroStones() {
 		Game newGame = new Game();
 		
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
 		newGame.startNewGame(simpleComputer);
 		
-		for (int pitNumber = 0; pitNumber <= 7; pitNumber++) {
-			if (pitNumber == 3 || pitNumber == 7) {
-				assertEquals(0, newGame.getStones(pitNumber));
-			}
-		}
+		assertEquals(0, newGame.getStones(7));
+	}
+	
+	/**
+	 * Test method for Game classes getStones() method, test that at the start of each game each store amount can be retrieved and is 0.
+	 */
+	@Test
+	public void testStartNewGameWillStartNewGameWithHumanStoresHavingZeroStones() {
+		Game newGame = new Game();
+		HumanPlayer simpleHuman = newGame.getHumanPlayer();
+		
+		newGame.startNewGame(simpleHuman);
+		
+		assertEquals(0, newGame.getStones(3));
 	}
 	
 	/**
