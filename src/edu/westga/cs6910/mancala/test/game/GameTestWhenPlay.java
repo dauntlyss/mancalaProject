@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import edu.westga.cs6910.mancala.model.ComputerPlayer;
 import edu.westga.cs6910.mancala.model.Game;
 import edu.westga.cs6910.mancala.model.HumanPlayer;
 
@@ -15,23 +16,16 @@ import edu.westga.cs6910.mancala.model.HumanPlayer;
  */
 public class GameTestWhenPlay {
 
-	/**
-	 * Test method for play(int), testing that current player switches as expected.
-	 */
 	@Test
-	public void testWhenHumanPlaysTurnThenBecomesComputersTurn() {
+	public void testWhenComputerPlaysTurnThenBecomesHumansTurn() {
 		Game newGame = new Game();
-		HumanPlayer realHumanPlayer = new HumanPlayer("Alyssa", newGame);
-		newGame.startNewGame(realHumanPlayer);
+		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
+		newGame.startNewGame(simpleComputer);;
 		
-		newGame.play(0);
-		newGame.play(1);
-		assertEquals("Simple computer", newGame.getCurrentPlayer().getName());
+		newGame.play(6);
+		assertEquals("Human", newGame.getCurrentPlayer().getName());
 	}
 	
-	/**
-	 * Test method for play(int), testing that current player switches as expected.
-	 */
 	@Test
 	public void testWhenHumanPlaysTurnPitSelectedBecomesEmpty() {
 		Game newGame = new Game();
@@ -40,6 +34,21 @@ public class GameTestWhenPlay {
 		
 		newGame.play(0);
 		assertEquals(0, newGame.getStones(0));
+	}
+	
+	@Test
+	public void testWhenGameOverCurrentPlayerIsNull() {
+		Game newGame = new Game();
+		HumanPlayer simpleHuman = newGame.getHumanPlayer();
+		
+		newGame.startNewGame(simpleHuman);
+		for (int pitNumber = 0; pitNumber < 8; pitNumber++) {
+			if (pitNumber != 3 || pitNumber != 7) {
+				newGame.play(pitNumber);
+			}
+		}
+		
+		assertEquals(null, newGame.getCurrentPlayer());
 	}
 
 }
