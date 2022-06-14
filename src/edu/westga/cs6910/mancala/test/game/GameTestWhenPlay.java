@@ -15,7 +15,10 @@ import edu.westga.cs6910.mancala.model.HumanPlayer;
  * @version Jun 13, 2022
  */
 public class GameTestWhenPlay {
-
+	
+	/**
+	 * Test method for Game classes play() method.
+	 */
 	@Test
 	public void testWhenComputerPlaysTurnThenBecomesHumansTurn() {
 		Game newGame = new Game();
@@ -26,6 +29,9 @@ public class GameTestWhenPlay {
 		assertEquals("Human", newGame.getCurrentPlayer().getName());
 	}
 	
+	/**
+	 * Test method for Game classes play() method.
+	 */
 	@Test
 	public void testWhenHumanPlaysTurnPitSelectedBecomesEmpty() {
 		Game newGame = new Game();
@@ -36,6 +42,9 @@ public class GameTestWhenPlay {
 		assertEquals(0, newGame.getStones(0));
 	}
 	
+	/**
+	 * Test method for Game classes play() method.
+	 */
 	@Test
 	public void testWhenGameOverCurrentPlayerIsNull() {
 		Game newGame = new Game();
