@@ -1,23 +1,25 @@
 package edu.westga.cs6910.mancala.test.computerPlayer;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import edu.westga.cs6910.mancala.model.ComputerPlayer;
+import edu.westga.cs6910.mancala.model.Game;
+
 /**
- * [Description...]
+ * Test to ensure the computerPlayer object is working correctly.
  *
  * @author Alyssa Harris
  * @version Jun 14, 2022
  */
-class ComputerPlayerTestWhenGetName {
+public class ComputerPlayerTestWhenGetName {
 
-	/**
-	 * Test method for {@link edu.westga.cs6910.mancala.model.AbstractPlayer#getName()}.
-	 */
 	@Test
-	void testGetName() {
-		fail("Not yet implemented");
+	public void testGetNameWillReturnComputerPlayersName() {
+		Game newGame = new Game();
+		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
+		assertEquals("Simple computer", simpleComputer.getName());
 	}
 
 }
