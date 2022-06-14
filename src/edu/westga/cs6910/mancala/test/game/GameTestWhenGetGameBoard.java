@@ -1,6 +1,6 @@
 package edu.westga.cs6910.mancala.test.game;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
