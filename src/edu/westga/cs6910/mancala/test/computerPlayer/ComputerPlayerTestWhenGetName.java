@@ -14,7 +14,10 @@ import edu.westga.cs6910.mancala.model.Game;
  * @version Jun 14, 2022
  */
 public class ComputerPlayerTestWhenGetName {
-
+	
+	/**
+	 * Test method for getName method.
+	 */
 	@Test
 	public void testGetNameWillReturnComputerPlayersName() {
 		Game newGame = new Game();

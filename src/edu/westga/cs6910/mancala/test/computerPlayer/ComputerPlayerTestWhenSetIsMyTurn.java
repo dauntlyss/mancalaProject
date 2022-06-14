@@ -14,7 +14,10 @@ import edu.westga.cs6910.mancala.model.Game;
  * @version Jun 14, 2022
  */
 public class ComputerPlayerTestWhenSetIsMyTurn {
-
+	
+	/**
+	 * Test method for setIsMyTurn method.
+	 */
 	@Test
 	public void testSetIsMyTurnWhenCalledForComputerSetsComputersTurnToTrue() {
 		Game newGame = new Game();
@@ -24,6 +27,9 @@ public class ComputerPlayerTestWhenSetIsMyTurn {
 		assertEquals(true, simpleComputer.getIsMyTurn());
 	}
 	
+	/**
+	 * Test method for setIsMyTurn method.
+	 */
 	@Test
 	public void testSetIsMyTurnWhenCalledForHumanSetsComputersTurnToFalse() {
 		Game newGame = new Game();
@@ -33,6 +39,4 @@ public class ComputerPlayerTestWhenSetIsMyTurn {
 		assertEquals(false, simpleComputer.getIsMyTurn());
 	}
 	
-	
-
 }
