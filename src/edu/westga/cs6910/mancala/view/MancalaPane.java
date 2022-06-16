@@ -193,6 +193,12 @@ public class MancalaPane extends BorderPane {
 			this.exit.setAccelerator(KeyCombination.keyCombination("shortcut + X"));
 			this.gameMenu.getItems().add(this.exit);
 			this.gameMenu.setMnemonicParsing(true);
+			this.exit.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					System.exit(0);
+				}
+			});
 			
 			this.nearStrategy = new RadioMenuItem("_Near");
 			this.nearStrategy.setAccelerator(KeyCombination.keyCombination("shortcut + N"));
