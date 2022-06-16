@@ -23,7 +23,7 @@ public class GameTestWhenPlay {
 	public void testWhenComputerPlaysTurnThenBecomesHumansTurn() {
 		Game newGame = new Game();
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);;
+		newGame.startNewGame(simpleComputer);
 		
 		newGame.play(6);
 		assertEquals("Human", newGame.getCurrentPlayer().getName());

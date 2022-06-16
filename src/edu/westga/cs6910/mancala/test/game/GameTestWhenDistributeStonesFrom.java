@@ -124,9 +124,5 @@ public class GameTestWhenDistributeStonesFrom {
 	    } catch (IllegalArgumentException ex) {
 	        assertEquals("Pit number cannot be negative", ex.getMessage());
 	    }
-		
 	}
-	
-	
-
 }
