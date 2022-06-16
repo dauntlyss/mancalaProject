@@ -4,8 +4,13 @@ import edu.westga.cs6910.mancala.model.Game;
 import edu.westga.cs6910.mancala.model.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -26,6 +31,7 @@ public class MancalaPane extends BorderPane {
 	private ComputerPane pnComputerPlayer;
 	private StatusPane pnGameInfo;
 	private Pane pnChooseFirstPlayer;
+	private MenuPane menuPane;
 	
 	/**
 	 * Creates a pane object to provide the view for the specified
@@ -43,27 +49,28 @@ public class MancalaPane extends BorderPane {
 		
 		this.theGame = theGame;
 		this.pnContent = new GridPane();		
-		this.addFirstPlayerChooserPane(theGame);		
+		this.addFirstPlayerChooserPane(theGame);	
+		this.addMenuPane(theGame);
 	
 		this.pnComputerPlayer = new ComputerPane(theGame);
 		this.pnComputerPlayer.setDisable(true);
 		HBox leftBox = new HBox();
 		leftBox.getStyleClass().add("pane-border");
 		leftBox.getChildren().add(this.pnComputerPlayer);
-		this.pnContent.add(leftBox, 0, 1);
+		this.pnContent.add(leftBox, 0, 2);
 		
 		this.pnHumanPlayer = new HumanPane(theGame);
 		this.pnHumanPlayer.setDisable(true);
 		HBox rightBox = new HBox();
 		rightBox.getStyleClass().add("pane-border");
 		rightBox.getChildren().add(this.pnHumanPlayer);
-		this.pnContent.add(rightBox, 0, 2);
+		this.pnContent.add(rightBox, 0, 3);
 		
 		this.pnGameInfo = new StatusPane(theGame);
 		HBox bottomBox = new HBox();
 		bottomBox.getStyleClass().add("pane-border");
 		bottomBox.getChildren().add(this.pnGameInfo);
-		this.pnContent.add(bottomBox, 0, 3);
+		this.pnContent.add(bottomBox, 0, 4);
 		
 		this.setCenter(this.pnContent);
 	}
@@ -73,7 +80,15 @@ public class MancalaPane extends BorderPane {
 		topBox.getStyleClass().add("pane-border");	
 		this.pnChooseFirstPlayer = new NewGamePane(theGame);
 		topBox.getChildren().add(this.pnChooseFirstPlayer);
-		this.pnContent.add(topBox, 0, 0);
+		this.pnContent.add(topBox, 0, 1);
+	}
+	
+	private void addMenuPane(Game theGame) {
+		HBox menuBox = new HBox();
+		this.menuPane = new MenuPane(this, theGame);
+		menuBox.getChildren().add(this.menuPane);
+		menuBox.prefWidthProperty().bind(this.widthProperty());
+		this.setTop(menuBox);
 	}
 	
 	/*
@@ -146,5 +161,59 @@ public class MancalaPane extends BorderPane {
 
 			}
 		}
+	}
+	
+	/*
+	 * Defines the menu bar where players can chose the ComputerPlayer's strategy or exit.
+	 */
+	private final class MenuPane extends GridPane {
+		private MenuBar menuBar;
+		private Game theGame;
+		private MancalaPane theMancalaPane;
+		private Menu gameMenu;
+		private Menu computerPlayerMenu;
+		
+		private MenuItem exit;
+		private RadioMenuItem nearStrategy;
+		private RadioMenuItem farStrategy;
+		private RadioMenuItem randomStrategy;
+		
+		private MenuPane(MancalaPane theMancalaPane, Game theGame) {
+			this.theGame = theGame;
+			this.menuBar = new MenuBar();
+			this.gameMenu = new Menu("_Game");
+			this.computerPlayerMenu = new Menu("_Computer Player");
+			this.theMancalaPane = theMancalaPane;
+			
+			this.buildMenuPane();
+		}
+		
+		private void buildMenuPane() {
+			this.exit = new MenuItem("E_xit");
+			this.exit.setAccelerator(KeyCombination.keyCombination("shortcut + X"));
+			this.gameMenu.getItems().add(this.exit);
+			this.gameMenu.setMnemonicParsing(true);
+			
+			this.nearStrategy = new RadioMenuItem("_Near");
+			this.nearStrategy.setAccelerator(KeyCombination.keyCombination("shortcut + N"));
+			
+			this.farStrategy = new RadioMenuItem("F_ar");
+			this.farStrategy.setAccelerator(KeyCombination.keyCombination("shortcut + A"));
+			
+			this.randomStrategy = new RadioMenuItem("_Random");
+			this.randomStrategy.setAccelerator(KeyCombination.keyCombination("shortcut + R"));
+			
+			ToggleGroup toggleGroup = new ToggleGroup();
+			this.nearStrategy.setToggleGroup(toggleGroup);
+			this.nearStrategy.setSelected(true);
+			this.farStrategy.setToggleGroup(toggleGroup);
+			this.randomStrategy.setToggleGroup(toggleGroup);
+			
+			this.computerPlayerMenu.getItems().addAll(this.nearStrategy, this.farStrategy, this.randomStrategy);
+			this.computerPlayerMenu.setMnemonicParsing(true);
+			this.menuBar.getMenus().addAll(this.gameMenu, this.computerPlayerMenu);
+			this.menuBar.prefWidthProperty().bind(this.theMancalaPane.widthProperty());
+			this.add(this.menuBar, 0, 0);
+		}	
 	}
 }
