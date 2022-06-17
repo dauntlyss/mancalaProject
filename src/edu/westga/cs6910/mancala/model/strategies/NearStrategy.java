@@ -13,7 +13,7 @@ public class NearStrategy implements SelectStrategy {
 	public int selectPit(int[] gameBoard) {
 		int pitChoice = gameBoard.length - 2;
 		
-		if (gameBoard[pitChoice] == 0) {
+		while (gameBoard[pitChoice] == 0) {
 			pitChoice--;
 		}
 		
