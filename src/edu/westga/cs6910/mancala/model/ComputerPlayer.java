@@ -17,7 +17,7 @@ public class ComputerPlayer extends AbstractPlayer {
 	 * 
 	 */
 	public ComputerPlayer(Game theGame) {
-		super(NAME, theGame);
-	}	
+		super(NAME, theGame);	
+	}
 
 }
