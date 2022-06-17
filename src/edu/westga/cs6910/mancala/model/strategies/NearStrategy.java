@@ -8,7 +8,7 @@ package edu.westga.cs6910.mancala.model.strategies;
  * @version Jun 17, 2022
  */
 public class NearStrategy implements SelectStrategy {
-
+	
 	@Override
 	public int selectPit(int[] gameBoard) {
 		int pitChoice = gameBoard.length - 2;
@@ -19,5 +19,4 @@ public class NearStrategy implements SelectStrategy {
 		
 		return pitChoice;
 	}
-
 }

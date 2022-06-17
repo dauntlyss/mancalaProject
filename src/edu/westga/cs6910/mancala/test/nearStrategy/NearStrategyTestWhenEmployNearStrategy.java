@@ -54,6 +54,7 @@ public class NearStrategyTestWhenEmployNearStrategy {
 		theGame.startNewGame(computerPlayer);
 		computerPlayer.takeTurn(6);
 		computerPlayer.takeTurn(5);
+		computerPlayer.takeTurn(6);
 
 		assertEquals(4, nearStrategy.selectPit(theGame.getGameBoard()));
 	}
