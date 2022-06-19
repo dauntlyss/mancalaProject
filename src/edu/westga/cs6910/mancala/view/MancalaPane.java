@@ -2,6 +2,9 @@ package edu.westga.cs6910.mancala.view;
 
 import edu.westga.cs6910.mancala.model.Game;
 import edu.westga.cs6910.mancala.model.Player;
+import edu.westga.cs6910.mancala.model.strategies.FarStrategy;
+import edu.westga.cs6910.mancala.model.strategies.NearStrategy;
+import edu.westga.cs6910.mancala.model.strategies.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
@@ -202,12 +205,30 @@ public class MancalaPane extends BorderPane {
 			
 			this.nearStrategy = new RadioMenuItem("_Near");
 			this.nearStrategy.setAccelerator(KeyCombination.keyCombination("shortcut + N"));
+			this.nearStrategy.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					MenuPane.this.theGame.getComputerPlayer().setStrategy(new NearStrategy());
+				}
+			});
 			
 			this.farStrategy = new RadioMenuItem("F_ar");
 			this.farStrategy.setAccelerator(KeyCombination.keyCombination("shortcut + A"));
+			this.farStrategy.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					MenuPane.this.theGame.getComputerPlayer().setStrategy(new FarStrategy());
+				}
+			});
 			
 			this.randomStrategy = new RadioMenuItem("_Random");
 			this.randomStrategy.setAccelerator(KeyCombination.keyCombination("shortcut + R"));
+			this.randomStrategy.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					MenuPane.this.theGame.getComputerPlayer().setStrategy(new RandomStrategy());
+				}
+			});
 			
 			ToggleGroup toggleGroup = new ToggleGroup();
 			this.nearStrategy.setToggleGroup(toggleGroup);
