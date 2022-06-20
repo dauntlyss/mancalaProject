@@ -35,4 +35,11 @@ public interface Player {
 	 * 
 	 */
 	void takeTurn(int pitChoice);
+	
+	/**
+	 * Returns the current Game.
+	 * 
+	 * @return the Game
+	 */
+	Game getGame();
 }

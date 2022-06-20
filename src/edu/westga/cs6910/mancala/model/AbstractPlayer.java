@@ -42,6 +42,11 @@ public abstract class AbstractPlayer implements Player {
 	public String getName() {
 		return this.name;
 	}
+	
+	@Override
+	public Game getGame() {
+		return this.theGame;
+	}
 
 	@Override
 	public void setIsMyTurn(boolean isMyTurn) {
