@@ -268,11 +268,12 @@ p {
 /* -----Gameplay----- */
 
 .reg-nav {
-    background:rgba(43, 52, 17, 0.561)
+    background:#2b34118f
 }
 
 .gameplay {
     height: 100vh;
+    margin-bottom: 200px;
 }
 
 .gameplay h2 {
@@ -298,7 +299,6 @@ p {
     font-family: 'Poppins', sans-serif;
     color: #777;
     font-weight: 300;
-    /* font-size: 18px; */
 }
 
 .gameplay-third {
@@ -336,7 +336,7 @@ p {
 	background-color: transparent;
 	border: none;
 	padding: 0;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 }
 
 .accordion-item {
@@ -362,6 +362,7 @@ p {
     text-align: center;
     padding: 5px 0;
     background-color: #9da50350;
+    margin-top: 25px;
 }
 
 .footer p {
