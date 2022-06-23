@@ -7,11 +7,14 @@ import edu.westga.cs6910.mancala.model.strategies.NearStrategy;
 import edu.westga.cs6910.mancala.model.strategies.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
@@ -34,6 +37,7 @@ public class MancalaPane extends BorderPane {
 	private ComputerPane pnComputerPlayer;
 	private StatusPane pnGameInfo;
 	private Pane pnChooseFirstPlayer;
+	private Pane pnChooseNumberOfStones;
 	private MenuPane menuPane;
 	
 	/**
@@ -54,6 +58,7 @@ public class MancalaPane extends BorderPane {
 		this.pnContent = new GridPane();		
 		this.addFirstPlayerChooserPane(theGame);	
 		this.addMenuPane(theGame);
+		this.addNumberOfStonesPane();
 	
 		this.pnComputerPlayer = new ComputerPane(theGame);
 		this.pnComputerPlayer.setDisable(true);
@@ -92,6 +97,14 @@ public class MancalaPane extends BorderPane {
 		menuBox.getChildren().add(this.menuPane);
 		menuBox.prefWidthProperty().bind(this.widthProperty());
 		this.setTop(menuBox);
+	}
+	
+	private void addNumberOfStonesPane() {
+		HBox topRightBox = new HBox();
+		topRightBox.getStyleClass().add("pane-border");	
+		this.pnChooseNumberOfStones = new NumberOfStonesPane();
+		topRightBox.getChildren().add(this.pnChooseNumberOfStones);
+		this.pnContent.add(topRightBox, 0, 0);
 	}
 	
 	/*
@@ -144,7 +157,8 @@ public class MancalaPane extends BorderPane {
 			public void handle(ActionEvent arg0) {
 				MancalaPane.this.pnComputerPlayer.setDisable(false);
 				MancalaPane.this.pnChooseFirstPlayer.setDisable(true);
-				MancalaPane.this.theGame.startNewGame(NewGamePane.this.theComputer);
+				
+				MancalaPane.this.theGame.startNewGame(NewGamePane.this.theComputer, 4);
 			}
 		}
 
@@ -160,9 +174,42 @@ public class MancalaPane extends BorderPane {
 			public void handle(ActionEvent event) {
 				MancalaPane.this.pnHumanPlayer.setDisable(false);
 				MancalaPane.this.pnChooseFirstPlayer.setDisable(true);
-				MancalaPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
+				MancalaPane.this.theGame.startNewGame(NewGamePane.this.theHuman, 4);
 
 			}
+		}
+	}
+	
+	/**
+	 * Defines the panel in which the user inputs how many stones per pit.
+	 */
+	private final class NumberOfStonesPane extends GridPane {
+		private Label stones;
+		private TextField numberOfStones;
+		private Button setButton;
+		
+		private NumberOfStonesPane() {
+			this.stones = new Label("Number of Stones:");
+			this.numberOfStones = new TextField();
+			this.setButton = new Button("SET");
+			
+			this.buildPane();
+		}
+		
+		private void buildPane() {
+			this.setHgap(10);
+			
+			this.add(this.stones, 2, 0);
+			this.add(this.numberOfStones, 3, 0);
+			this.add(this.setButton, 4, 0);
+			
+			this.setButton.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					System.exit(0);
+				}
+			});
+
 		}
 	}
 	

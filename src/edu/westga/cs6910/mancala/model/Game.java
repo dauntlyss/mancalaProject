@@ -44,8 +44,8 @@ public class Game implements Observable {
 	 * 
 	 * @ensures whoseTurn().equals(firstPlayer)
 	 */
-	public void startNewGame(Player firstPlayer) {
-		this.resetBoard();
+	public void startNewGame(Player firstPlayer, int numberOfStones) {
+		this.resetBoard(numberOfStones);
 		this.currentPlayerObject.setValue(firstPlayer);
 	}
 
@@ -209,10 +209,10 @@ public class Game implements Observable {
 	/**
 	 * Sets up the board such that there is exactly 1 stone in each pit
 	 */
-	private void resetBoard() {
+	private void resetBoard(int numberOfStones) {
 		for (int index = 0; index < this.theBoard.length / 2 - 1; index++) {
-			this.theBoard[index] = 1;
-			this.theBoard[index + this.theBoard.length / 2] = 1;
+			this.theBoard[index] = numberOfStones;
+			this.theBoard[index + this.theBoard.length / 2] = numberOfStones;
 		}
 	}
 
