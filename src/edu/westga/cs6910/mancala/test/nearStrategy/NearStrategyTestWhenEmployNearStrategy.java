@@ -24,7 +24,7 @@ public class NearStrategyTestWhenEmployNearStrategy {
 		Game theGame = new Game();
 		NearStrategy nearStrategy = new NearStrategy();
 		ComputerPlayer computerPlayer = new ComputerPlayer(theGame);
-		theGame.startNewGame(computerPlayer);
+		theGame.startNewGame(computerPlayer, 1);
 
 		assertEquals(6, nearStrategy.selectPit(theGame.getGameBoard()));
 	}
@@ -37,7 +37,7 @@ public class NearStrategyTestWhenEmployNearStrategy {
 		Game theGame = new Game();
 		NearStrategy nearStrategy = new NearStrategy();
 		ComputerPlayer computerPlayer = new ComputerPlayer(theGame);
-		theGame.startNewGame(computerPlayer);
+		theGame.startNewGame(computerPlayer, 1);
 		computerPlayer.takeTurn(6);
 
 		assertEquals(5, nearStrategy.selectPit(theGame.getGameBoard()));
@@ -51,7 +51,7 @@ public class NearStrategyTestWhenEmployNearStrategy {
 		Game theGame = new Game();
 		NearStrategy nearStrategy = new NearStrategy();
 		ComputerPlayer computerPlayer = new ComputerPlayer(theGame);
-		theGame.startNewGame(computerPlayer);
+		theGame.startNewGame(computerPlayer, 1);
 		computerPlayer.takeTurn(6);
 		computerPlayer.takeTurn(5);
 		computerPlayer.takeTurn(6);

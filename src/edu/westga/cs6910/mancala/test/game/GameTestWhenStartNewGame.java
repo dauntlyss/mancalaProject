@@ -23,7 +23,7 @@ public class GameTestWhenStartNewGame {
 	public void testStartNewGameWillStartNewGameWithComputerFirst() {
 		Game newGame = new Game();
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		assertEquals(simpleComputer, newGame.getCurrentPlayer());
 		
 	}
@@ -35,7 +35,7 @@ public class GameTestWhenStartNewGame {
 	public void testStartNewGameWillStartNewGameWithHumanFirst() {
 		Game newGame = new Game();
 		HumanPlayer realHumanPlayer = new HumanPlayer("Alyssa", newGame);
-		newGame.startNewGame(realHumanPlayer);
+		newGame.startNewGame(realHumanPlayer, 1);
 		assertEquals(realHumanPlayer, newGame.getCurrentPlayer());
 		
 	}

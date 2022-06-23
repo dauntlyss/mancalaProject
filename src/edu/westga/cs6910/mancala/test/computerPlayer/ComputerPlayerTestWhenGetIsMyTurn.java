@@ -33,7 +33,7 @@ public class ComputerPlayerTestWhenGetIsMyTurn {
 	public void testGetIsMyTurnIsFalseWhenHumansTurn() {
 		Game newGame = new Game();
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(newGame.getHumanPlayer());
+		newGame.startNewGame(newGame.getHumanPlayer(), 1);
 		
 		assertEquals(false, simpleComputer.getIsMyTurn());
 	}

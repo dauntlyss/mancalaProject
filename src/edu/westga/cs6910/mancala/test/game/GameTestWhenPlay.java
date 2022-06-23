@@ -23,7 +23,7 @@ public class GameTestWhenPlay {
 	public void testWhenComputerPlaysTurnThenBecomesHumansTurn() {
 		Game newGame = new Game();
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		
 		newGame.play(6);
 		assertEquals("Human", newGame.getCurrentPlayer().getName());
@@ -36,7 +36,7 @@ public class GameTestWhenPlay {
 	public void testWhenHumanPlaysTurnPitSelectedBecomesEmpty() {
 		Game newGame = new Game();
 		HumanPlayer realHumanPlayer = new HumanPlayer("Alyssa", newGame);
-		newGame.startNewGame(realHumanPlayer);
+		newGame.startNewGame(realHumanPlayer, 1);
 		
 		newGame.play(0);
 		assertEquals(0, newGame.getStones(0));
@@ -50,7 +50,7 @@ public class GameTestWhenPlay {
 		Game newGame = new Game();
 		HumanPlayer simpleHuman = newGame.getHumanPlayer();
 		
-		newGame.startNewGame(simpleHuman);
+		newGame.startNewGame(simpleHuman, 1);
 		for (int pitNumber = 0; pitNumber < 8; pitNumber++) {
 			if (pitNumber != 3 || pitNumber != 7) {
 				newGame.play(pitNumber);

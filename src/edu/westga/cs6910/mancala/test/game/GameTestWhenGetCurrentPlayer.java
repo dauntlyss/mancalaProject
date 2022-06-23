@@ -24,7 +24,7 @@ public class GameTestWhenGetCurrentPlayer {
 		Game newGame = new Game();
 		
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		assertEquals(simpleComputer, newGame.getCurrentPlayer());
 	}
 	
@@ -36,7 +36,7 @@ public class GameTestWhenGetCurrentPlayer {
 		Game newGame = new Game();
 		
 		HumanPlayer simpleHuman = new HumanPlayer("Alyssa", newGame);
-		newGame.startNewGame(simpleHuman);
+		newGame.startNewGame(simpleHuman, 1);
 		assertEquals(simpleHuman, newGame.getCurrentPlayer());
 	}
 	
@@ -49,7 +49,7 @@ public class GameTestWhenGetCurrentPlayer {
 		
 		HumanPlayer simpleHuman = newGame.getHumanPlayer();
 		
-		newGame.startNewGame(simpleHuman);
+		newGame.startNewGame(simpleHuman, 1);
 		newGame.play(0);
 		newGame.play(5);
 		

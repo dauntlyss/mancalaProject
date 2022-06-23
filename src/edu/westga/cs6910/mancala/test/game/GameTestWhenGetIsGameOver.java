@@ -23,7 +23,7 @@ public class GameTestWhenGetIsGameOver {
 		Game newGame = new Game();
 		HumanPlayer simpleHuman = newGame.getHumanPlayer();
 		
-		newGame.startNewGame(simpleHuman);
+		newGame.startNewGame(simpleHuman, 1);
 		for (int pitNumber = 0; pitNumber < 8; pitNumber++) {
 			if (pitNumber != 3 || pitNumber != 7) {
 				newGame.play(pitNumber);
@@ -41,7 +41,7 @@ public class GameTestWhenGetIsGameOver {
 		Game newGame = new Game();
 		HumanPlayer simpleHuman = newGame.getHumanPlayer();
 		
-		newGame.startNewGame(simpleHuman);
+		newGame.startNewGame(simpleHuman, 1);
 				
 		assertEquals(false, newGame.getIsGameOver());
 	}

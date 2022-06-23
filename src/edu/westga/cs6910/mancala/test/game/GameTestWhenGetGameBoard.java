@@ -22,7 +22,7 @@ public class GameTestWhenGetGameBoard {
 	public void testGetGameBoardAtStartReturnsGameBoardReadyToPlay() {
 		Game newGame = new Game();
 		HumanPlayer realHumanPlayer = new HumanPlayer("Alyssa", newGame);
-		newGame.startNewGame(realHumanPlayer);
+		newGame.startNewGame(realHumanPlayer, 1);
 		
 		int[] gameBoard = {1, 1, 1, 0, 1, 1, 1, 0};
 		assertArrayEquals(gameBoard, newGame.getGameBoard());
@@ -46,7 +46,7 @@ public class GameTestWhenGetGameBoard {
 	public void testGetGameBoardReturnsAccurateGameBoardAfterPlay() {
 		Game newGame = new Game();
 		HumanPlayer realHumanPlayer = new HumanPlayer("Alyssa", newGame);
-		newGame.startNewGame(realHumanPlayer);
+		newGame.startNewGame(realHumanPlayer, 1);
 		
 		newGame.play(0);
 		newGame.play(1);

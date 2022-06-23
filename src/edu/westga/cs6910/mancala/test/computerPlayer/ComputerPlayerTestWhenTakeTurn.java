@@ -22,7 +22,7 @@ public class ComputerPlayerTestWhenTakeTurn {
 	public void testTakeTurnMethodTakesFromDesignatedPit() {
 		Game newGame = new Game();
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		simpleComputer.takeTurn(6);
 		int[] gameBoard = newGame.getGameBoard();
 		
@@ -36,7 +36,7 @@ public class ComputerPlayerTestWhenTakeTurn {
 	public void testTakeTurnMethodAfterComputerTakesTurnIsMyTurnIsSetToFalse() {
 		Game newGame = new Game();
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		simpleComputer.takeTurn(6);
 		
 		assertEquals(false, simpleComputer.getIsMyTurn());

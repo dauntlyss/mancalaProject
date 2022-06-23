@@ -22,7 +22,7 @@ public class HumanPlayerTestWhenTakeTurn {
 	public void testTakeTurnMethodTakesFromDesignatedPit() {
 		Game newGame = new Game();
 		HumanPlayer human = new HumanPlayer("Alyssa", newGame);
-		newGame.startNewGame(human);
+		newGame.startNewGame(human, 1);
 		human.takeTurn(0);
 		int[] gameBoard = newGame.getGameBoard();
 		
@@ -36,7 +36,7 @@ public class HumanPlayerTestWhenTakeTurn {
 	public void testTakeTurnMethodAfterHumanTakesTurnIsMyTurnIsSetToFalse() {
 		Game newGame = new Game();
 		HumanPlayer human = new HumanPlayer("Alyssa", newGame);
-		newGame.startNewGame(human);
+		newGame.startNewGame(human, 1);
 		human.takeTurn(0);
 		
 		assertEquals(false, human.getIsMyTurn());

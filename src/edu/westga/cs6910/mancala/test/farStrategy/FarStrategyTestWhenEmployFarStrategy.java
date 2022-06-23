@@ -24,7 +24,7 @@ public class FarStrategyTestWhenEmployFarStrategy {
 		Game theGame = new Game();
 		FarStrategy farStrategy = new FarStrategy();
 		ComputerPlayer computerPlayer = new ComputerPlayer(theGame);
-		theGame.startNewGame(computerPlayer);
+		theGame.startNewGame(computerPlayer, 1);
 
 		assertEquals(4, farStrategy.selectPit(theGame.getGameBoard()));
 	}
@@ -37,7 +37,7 @@ public class FarStrategyTestWhenEmployFarStrategy {
 		Game theGame = new Game();
 		FarStrategy farStrategy = new FarStrategy();
 		ComputerPlayer computerPlayer = new ComputerPlayer(theGame);
-		theGame.startNewGame(computerPlayer);
+		theGame.startNewGame(computerPlayer, 1);
 		theGame.distributeStonesFrom(4);
 
 		assertEquals(5, farStrategy.selectPit(theGame.getGameBoard()));
@@ -51,7 +51,7 @@ public class FarStrategyTestWhenEmployFarStrategy {
 		Game theGame = new Game();
 		FarStrategy farStrategy = new FarStrategy();
 		ComputerPlayer computerPlayer = new ComputerPlayer(theGame);
-		theGame.startNewGame(computerPlayer);
+		theGame.startNewGame(computerPlayer, 1);
 		theGame.distributeStonesFrom(4);
 		theGame.distributeStonesFrom(5);
 

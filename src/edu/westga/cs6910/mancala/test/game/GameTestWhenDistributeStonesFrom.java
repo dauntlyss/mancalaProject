@@ -24,7 +24,7 @@ public class GameTestWhenDistributeStonesFrom {
 		Game newGame = new Game();
 		
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		
 		newGame.distributeStonesFrom(0);
 		assertEquals(2, newGame.getStones(1));
@@ -39,7 +39,7 @@ public class GameTestWhenDistributeStonesFrom {
 		Game newGame = new Game();
 		
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		
 		newGame.distributeStonesFrom(2);
 		assertEquals(1, newGame.getStones(3));
@@ -54,7 +54,7 @@ public class GameTestWhenDistributeStonesFrom {
 		Game newGame = new Game();
 		
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		
 		newGame.distributeStonesFrom(1);
 		newGame.distributeStonesFrom(2);
@@ -70,7 +70,7 @@ public class GameTestWhenDistributeStonesFrom {
 		Game newGame = new Game();
 		
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		
 		newGame.distributeStonesFrom(6);
 		assertEquals(1, newGame.getStones(7));
@@ -85,7 +85,7 @@ public class GameTestWhenDistributeStonesFrom {
 		Game newGame = new Game();
 		
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		
 		newGame.distributeStonesFrom(5);
 		newGame.distributeStonesFrom(6);
@@ -101,7 +101,7 @@ public class GameTestWhenDistributeStonesFrom {
 		Game newGame = new Game();
 		
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		
 		newGame.distributeStonesFrom(0);
 		assertEquals(0, newGame.getStones(0));
@@ -116,7 +116,7 @@ public class GameTestWhenDistributeStonesFrom {
 		Game newGame = new Game();
 		
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		
 		try {
 	        newGame.distributeStonesFrom(-1);     

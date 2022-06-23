@@ -34,7 +34,7 @@ public class GameTestWhenGetStones {
 		Game newGame = new Game();
 		HumanPlayer simpleHuman = newGame.getHumanPlayer();
 		
-		newGame.startNewGame(simpleHuman);
+		newGame.startNewGame(simpleHuman, 1);
 		
 		for (int pitNumber = 0; pitNumber < 3; pitNumber++) {
 			if (newGame.getStones(pitNumber) != 1) {
@@ -52,7 +52,7 @@ public class GameTestWhenGetStones {
 		Game newGame = new Game();
 		HumanPlayer simpleHuman = newGame.getHumanPlayer();
 		
-		newGame.startNewGame(simpleHuman);
+		newGame.startNewGame(simpleHuman, 1);
 		
 		for (int pitNumber = 4; pitNumber < 7; pitNumber++) {
 			if (newGame.getStones(pitNumber) != 1) {
@@ -70,7 +70,7 @@ public class GameTestWhenGetStones {
 		Game newGame = new Game();
 		
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		
 		assertEquals(0, newGame.getStones(7));
 	}
@@ -83,7 +83,7 @@ public class GameTestWhenGetStones {
 		Game newGame = new Game();
 		HumanPlayer simpleHuman = newGame.getHumanPlayer();
 		
-		newGame.startNewGame(simpleHuman);
+		newGame.startNewGame(simpleHuman, 1);
 		
 		assertEquals(0, newGame.getStones(3));
 	}
@@ -96,7 +96,7 @@ public class GameTestWhenGetStones {
 		Game newGame = new Game();
 		
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer);
+		newGame.startNewGame(simpleComputer, 1);
 		
 		try {
 	        newGame.getStones(-1);     
