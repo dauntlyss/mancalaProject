@@ -21,6 +21,7 @@ public class Game implements Observable {
 
 	private Player theWinner;
 	private boolean isGameOver;
+	private int currentPit;
 
 	/**
 	 * Creates a Mancala Game with the specified Players
@@ -81,6 +82,8 @@ public class Game implements Observable {
 			}
 			currentPit += 1;
 		}
+		this.currentPit = currentPit % this.theBoard.length;
+		System.out.println(this.currentPit);
 	}
 
 	/**
@@ -161,6 +164,16 @@ public class Game implements Observable {
 			this.determineWinner();
 			this.currentPlayerObject.setValue(null);			
 		} else {
+			this.determineIfGetExtraTurn();
+		}
+	}
+	
+	public void determineIfGetExtraTurn() {
+		if (this.currentPit == 4 || this.currentPit == 8) {
+			this.addListener(null);
+			this.keepCurrentPlayer();
+			System.out.println("extraTurn!");
+		} else {
 			this.swapWhoseTurn();
 		}
 	}
@@ -222,6 +235,14 @@ public class Game implements Observable {
 			this.currentPlayerObject.setValue(this.theComputer);
 		} else {
 			this.currentPlayerObject.setValue(this.theHuman);
+		}
+	}
+	
+	private void keepCurrentPlayer() {
+		if (this.currentPlayerObject.getValue() == this.theHuman) {
+			this.currentPlayerObject.setValue(this.theHuman);
+		} else {
+			this.currentPlayerObject.setValue(this.theComputer);
 		}
 	}
 
