@@ -84,6 +84,7 @@ public class Game implements Observable {
 		}
 		this.currentPit = currentPit % this.theBoard.length;
 		System.out.println(this.currentPit);
+		this.determineIfGetExtraTurn();
 	}
 
 	/**
@@ -169,8 +170,7 @@ public class Game implements Observable {
 	}
 	
 	public void determineIfGetExtraTurn() {
-		if (this.currentPit == 4 || this.currentPit == 8) {
-			this.addListener(null);
+		if (this.currentPit == 4 || this.currentPit == 0) {
 			this.keepCurrentPlayer();
 			System.out.println("extraTurn!");
 		} else {
