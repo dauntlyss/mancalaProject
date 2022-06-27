@@ -63,7 +63,34 @@ public class Game implements Observable {
 
 		int amountOfStones = this.theBoard[pitNumber];
 		this.theBoard[pitNumber] = 0;
+		int stonesRemaining = 0;
 		int pitToSkip = 0;
+		
+		for (int index = 0; stonesRemaining < amountOfStones; stonesRemaining++) {
+			if (pitNumber + index + 1 < this.getBoardSize()
+                    && !((this.getCurrentPlayer().equals(this.theHuman) && pitNumber + index + 1 == this.getBoardSize() - 1)
+                            || (this.getCurrentPlayer().equals(this.theComputer)
+                                    && pitNumber + index + 1 == this.theBoard.length / 2 - 1))) {
+                this.theBoard[pitNumber + index + 1]++;
+                index++;
+            } else if (((this.getCurrentPlayer().equals(this.theHuman) && pitNumber + index + 1 == this.getBoardSize() - 1)
+                    || (this.getCurrentPlayer().equals(this.theComputer)
+                            && pitNumber + index + 1 == this.theBoard.length / 2 - 1))) {
+                stonesRemaining--;
+                index++;
+            } else {
+                pitNumber = 0;
+                index = 0;
+                this.theBoard[pitNumber + index]++;
+            } 
+			
+			if (this.determineIfGetExtraTurn(pitNumber, index) && stonesRemaining + 1 == amountOfStones) {
+
+				this.currentPit = pitNumber;
+				System.out.println(this.currentPit);
+				System.out.println("Extra Turn!");
+			} 
+		}
 		
 		if (pitNumber < this.theBoard.length / 2) {
 			pitToSkip = this.theBoard.length - 1;
@@ -71,20 +98,19 @@ public class Game implements Observable {
 			pitToSkip = this.theBoard.length / 2 - 1;
 		}
 		
-		int currentPit = pitNumber + 1;
+//		int currentPit = pitNumber + 1;
+//		
+//		while (amountOfStones > 0) {
+//			if (currentPit % this.theBoard.length != pitToSkip) {
+//				int[] theBoard = this.theBoard;
+//				int place = currentPit % this.theBoard.length;
+//				theBoard[place] += 1;
+//				amountOfStones -= 1;
+//			}
+//			currentPit += 1;
+//		}
 		
-		while (amountOfStones > 0) {
-			if (currentPit % this.theBoard.length != pitToSkip) {
-				int[] theBoard = this.theBoard;
-				int place = currentPit % this.theBoard.length;
-				theBoard[place] += 1;
-				amountOfStones -= 1;
-			}
-			currentPit += 1;
-		}
-		this.currentPit = currentPit % this.theBoard.length;
-		System.out.println(this.currentPit);
-		this.determineIfGetExtraTurn();
+//		this.determineIfGetExtraTurn();
 	}
 
 	/**
@@ -165,17 +191,19 @@ public class Game implements Observable {
 			this.determineWinner();
 			this.currentPlayerObject.setValue(null);			
 		} else {
-			this.determineIfGetExtraTurn();
+			this.swapWhoseTurn();
 		}
 	}
 	
-	public void determineIfGetExtraTurn() {
-		if (this.currentPit == 4 || this.currentPit == 0) {
-			this.keepCurrentPlayer();
-			System.out.println("extraTurn!");
+	public boolean determineIfGetExtraTurn(int pitNumber, int index) {
+		boolean extraTurn;
+		if (this.currentPlayerObject.getValue() == this.theComputer && (pitNumber + index) % 7 == 0 
+				|| this.currentPlayerObject.getValue() == this.theHuman && (pitNumber + index) % 3 == 0) {
+			extraTurn = true;
 		} else {
-			this.swapWhoseTurn();
+			extraTurn = false;
 		}
+		return extraTurn;
 	}
 
 	private void determineIfGameIsOver() {
@@ -235,14 +263,6 @@ public class Game implements Observable {
 			this.currentPlayerObject.setValue(this.theComputer);
 		} else {
 			this.currentPlayerObject.setValue(this.theHuman);
-		}
-	}
-	
-	private void keepCurrentPlayer() {
-		if (this.currentPlayerObject.getValue() == this.theHuman) {
-			this.currentPlayerObject.setValue(this.theHuman);
-		} else {
-			this.currentPlayerObject.setValue(this.theComputer);
 		}
 	}
 
