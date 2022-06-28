@@ -41,6 +41,7 @@ public class Game implements Observable {
 	 * Initializes the game for play.
 	 * 
 	 * @param firstPlayer the Player who takes the first turn
+	 * @param numberOfStones number of stones to start with
 	 * 
 	 * @require firstPlayer != null &&
 	 * 
@@ -100,19 +101,6 @@ public class Game implements Observable {
 			pitToSkip = this.theBoard.length / 2 - 1;
 		}
 		
-//		int currentPit = pitNumber + 1;
-//		
-//		while (amountOfStones > 0) {
-//			if (currentPit % this.theBoard.length != pitToSkip) {
-//				int[] theBoard = this.theBoard;
-//				int place = currentPit % this.theBoard.length;
-//				theBoard[place] += 1;
-//				amountOfStones -= 1;
-//			}
-//			currentPit += 1;
-//		}
-		
-//		this.determineIfGetExtraTurn();
 	}
 
 	/**
@@ -124,6 +112,12 @@ public class Game implements Observable {
 		return this.theBoard.length;
 	}
 	
+	/**
+	 * Returns a message if the player gets a free turn or captures
+	 * opponents stones
+	 * 
+	 * @return The turn status
+	 */
 	public String getTurnStatusUpdate() {
 		return this.turnStatusUpdate;
 	}
@@ -201,7 +195,7 @@ public class Game implements Observable {
 		}
 	}
 	
-	public boolean determineIfGetExtraTurn(int pitNumber, int index) {
+	private boolean determineIfGetExtraTurn(int pitNumber, int index) {
 		boolean extraTurn;
 		if ((this.getCurrentPlayer().equals(this.theComputer) && pitNumber + index == this.getBoardSize() - 1)
                 || (this.getCurrentPlayer().equals(this.theHuman)
@@ -256,6 +250,8 @@ public class Game implements Observable {
 
 	/**
 	 * Sets up the board such that there is exactly 1 stone in each pit
+	 * 
+	 * @param numberOfStones number of stones to start with
 	 */
 	private void resetBoard(int numberOfStones) {
 		for (int index = 0; index < this.theBoard.length / 2 - 1; index++) {
