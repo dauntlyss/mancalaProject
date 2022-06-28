@@ -91,7 +91,7 @@ public class Game implements Observable {
 				this.swapWhoseTurn();
 			} else if (!this.determineIfGetExtraTurn(pitNumber, index) && stonesRemaining + 1 == amountOfStones
                     && this.theBoard[pitNumber + index] == 1 && this.getCurrentPlayer().equals(this.theHuman)
-                    && this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] != 0) {
+                    && this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] != 0 && (pitNumber + index) < this.getBoardSize() / 2 - 1) {
                 this.theBoard[(this.getBoardSize() / 2) - 1] += this.theBoard[(this.getBoardSize() - 2)
                         - (pitNumber + index)];
                 this.theBoard[(this.getBoardSize() / 2) - 1]++;
@@ -100,7 +100,7 @@ public class Game implements Observable {
                 this.turnStatusUpdate = this.theHuman.getName() + " captured all the stones in pit " + ((this.getBoardSize() - 2) - (pitNumber + index)) + ".";
             } else if (!this.determineIfGetExtraTurn(pitNumber, index) && stonesRemaining + 1 == amountOfStones
                     && this.theBoard[pitNumber + index] == 1 && this.getCurrentPlayer().equals(this.theComputer)
-                    && this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] != 0) {
+                    && this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] != 0 && (pitNumber + index) > this.getBoardSize() / 2 - 1) {
                 this.theBoard[this.getBoardSize() - 1] += this.theBoard[(this.getBoardSize() - 2)
                         - (pitNumber + index)];
                 this.theBoard[this.getBoardSize() - 1]++;
