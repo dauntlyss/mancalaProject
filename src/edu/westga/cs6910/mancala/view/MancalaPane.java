@@ -158,7 +158,7 @@ public class MancalaPane extends BorderPane {
 				MancalaPane.this.pnComputerPlayer.setDisable(false);
 				MancalaPane.this.pnChooseFirstPlayer.setDisable(true);
 				
-				MancalaPane.this.theGame.startNewGame(NewGamePane.this.theComputer, 3);
+				MancalaPane.this.theGame.startNewGame(NewGamePane.this.theComputer, 1);
 			}
 		}
 
@@ -174,7 +174,7 @@ public class MancalaPane extends BorderPane {
 			public void handle(ActionEvent event) {
 				MancalaPane.this.pnHumanPlayer.setDisable(false);
 				MancalaPane.this.pnChooseFirstPlayer.setDisable(true);
-				MancalaPane.this.theGame.startNewGame(NewGamePane.this.theHuman, 3);
+				MancalaPane.this.theGame.startNewGame(NewGamePane.this.theHuman, 1);
 
 			}
 		}

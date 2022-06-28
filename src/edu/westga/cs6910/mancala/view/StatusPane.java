@@ -18,6 +18,7 @@ import javafx.scene.layout.HBox;
 public class StatusPane extends GridPane implements InvalidationListener {
 	private Game theGame;
 	private Label lblStatus;
+	private Label lblTurnStatus;
 	
 	/**
 	 * Creates a new status pane that observes the specified game. 
@@ -43,13 +44,22 @@ public class StatusPane extends GridPane implements InvalidationListener {
 		
 		HBox middleBox = new HBox();
 		middleBox.getStyleClass().add("box-padding");
+		middleBox.getStyleClass().add("box-center");
 		this.lblStatus = new Label(this.theGame.toString());
 		middleBox.getChildren().add(this.lblStatus);
 		this.add(middleBox, 0, 1);
+		
+		HBox bottomBox = new HBox();
+		bottomBox.getStyleClass().add("box-padding");
+		bottomBox.getStyleClass().add("box-center");
+		this.lblTurnStatus = new Label(this.theGame.getTurnStatusUpdate());
+		bottomBox.getChildren().add(this.lblTurnStatus);
+		this.add(bottomBox, 0, 2);
 	}
 
 	@Override
 	public void invalidated(Observable observable) {
 		this.lblStatus.setText(this.theGame.toString());
+		this.lblTurnStatus.setText(this.theGame.getTurnStatusUpdate());
 	}
 }

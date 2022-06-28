@@ -21,7 +21,7 @@ public class Game implements Observable {
 
 	private Player theWinner;
 	private boolean isGameOver;
-	private int currentPit;
+	private String turnStatusUpdate;
 
 	/**
 	 * Creates a Mancala Game with the specified Players
@@ -34,6 +34,7 @@ public class Game implements Observable {
 		this.currentPlayerObject = new SimpleObjectProperty<Player>();
 
 		this.theBoard = new int[8];
+		this.turnStatusUpdate = "";
 	}
 
 	/**
@@ -85,11 +86,12 @@ public class Game implements Observable {
             } 
 			
 			if (this.determineIfGetExtraTurn(pitNumber, index) && stonesRemaining + 1 == amountOfStones) {
-
-				this.currentPit = pitNumber;
-				System.out.println(this.currentPit);
-				System.out.println("Extra Turn!");
-			} 
+				this.turnStatusUpdate = this.currentPlayerObject.getValue().getName() + " gets a free turn for landing in the store!";
+				this.swapWhoseTurn();
+				System.out.println(this.turnStatusUpdate);
+			} else {
+				this.turnStatusUpdate = "";
+			}
 		}
 		
 		if (pitNumber < this.theBoard.length / 2) {
@@ -120,6 +122,10 @@ public class Game implements Observable {
 	 */
 	public int getBoardSize() {
 		return this.theBoard.length;
+	}
+	
+	public String getTurnStatusUpdate() {
+		return this.turnStatusUpdate;
 	}
 
 	/**
@@ -197,8 +203,9 @@ public class Game implements Observable {
 	
 	public boolean determineIfGetExtraTurn(int pitNumber, int index) {
 		boolean extraTurn;
-		if (this.currentPlayerObject.getValue() == this.theComputer && (pitNumber + index) % 7 == 0 
-				|| this.currentPlayerObject.getValue() == this.theHuman && (pitNumber + index) % 3 == 0) {
+		if ((this.getCurrentPlayer().equals(this.theComputer) && pitNumber + index == this.getBoardSize() - 1)
+                || (this.getCurrentPlayer().equals(this.theHuman)
+                        && pitNumber + index == (this.theBoard.length / 2) - 1)) {
 			extraTurn = true;
 		} else {
 			extraTurn = false;
