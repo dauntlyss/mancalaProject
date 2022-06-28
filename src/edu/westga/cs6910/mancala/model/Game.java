@@ -90,7 +90,6 @@ public class Game implements Observable {
 			if (this.determineIfGetExtraTurn(pitNumber, index) && stonesRemaining + 1 == amountOfStones) {
 				this.turnStatusUpdate = this.currentPlayerObject.getValue().getName() + " gets a free turn for landing in the store!";
 				this.swapWhoseTurn();
-				System.out.println(this.turnStatusUpdate);
 			} else {
 				this.turnStatusUpdate = "";
 			}
@@ -254,8 +253,13 @@ public class Game implements Observable {
 	 * Sets the number of stones in each pit
 	 * 
 	 * @param numberOfStones number of stones to start with
+	 * 
+	 * @requires numberOfStones > 0
 	 */
 	public void setNumberOfStartingStones(int numberOfStones) {
+		if (numberOfStones <= 0) {
+			throw new IllegalArgumentException("Please enter a valid number.");
+		}
 		this.startingStones = numberOfStones;
 	}
 	

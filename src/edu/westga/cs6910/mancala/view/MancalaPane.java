@@ -7,6 +7,7 @@ import edu.westga.cs6910.mancala.model.strategies.NearStrategy;
 import edu.westga.cs6910.mancala.model.strategies.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -16,6 +17,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -87,6 +89,7 @@ public class MancalaPane extends BorderPane {
 		HBox topBox = new HBox();
 		topBox.getStyleClass().add("pane-border");	
 		this.pnChooseFirstPlayer = new NewGamePane(theGame);
+		this.pnChooseFirstPlayer.setDisable(true);
 		topBox.getChildren().add(this.pnChooseFirstPlayer);
 		this.pnContent.add(topBox, 0, 1);
 	}
@@ -206,9 +209,17 @@ public class MancalaPane extends BorderPane {
 			this.setButton.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					int stones = Integer.parseInt((NumberOfStonesPane.this.numberOfStones.getText()));
-					MancalaPane.this.theGame.setNumberOfStartingStones(stones);
-					MancalaPane.this.pnChooseNumberOfStones.setDisable(true);
+					try {
+						int stones = Integer.parseInt((NumberOfStonesPane.this.numberOfStones.getText()));
+						MancalaPane.this.theGame.setNumberOfStartingStones(stones);
+						MancalaPane.this.pnChooseNumberOfStones.setDisable(true);
+						MancalaPane.this.pnChooseFirstPlayer.setDisable(false);
+					} catch (IllegalArgumentException ex) {
+						Alert noStonesAlert = new Alert(AlertType.ERROR);
+						noStonesAlert.setTitle("Mancala");
+						noStonesAlert.setHeaderText("Please enter a valid number greater than 0.");
+						noStonesAlert.showAndWait();
+					}
 				}
 			});
 
