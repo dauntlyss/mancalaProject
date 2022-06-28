@@ -22,6 +22,7 @@ public class Game implements Observable {
 	private Player theWinner;
 	private boolean isGameOver;
 	private String turnStatusUpdate;
+	private int startingStones;
 
 	/**
 	 * Creates a Mancala Game with the specified Players
@@ -93,6 +94,7 @@ public class Game implements Observable {
 			} else {
 				this.turnStatusUpdate = "";
 			}
+			
 		}
 		
 		if (pitNumber < this.theBoard.length / 2) {
@@ -246,6 +248,24 @@ public class Game implements Observable {
 	 */
 	public int[] getGameBoard() {
 		return this.theBoard.clone();
+	}
+	
+	/**
+	 * Sets the number of stones in each pit
+	 * 
+	 * @param numberOfStones number of stones to start with
+	 */
+	public void setNumberOfStartingStones(int numberOfStones) {
+		this.startingStones = numberOfStones;
+	}
+	
+	/**
+	 * Returns number of stones the user would like in each pit
+	 * 
+	 * @return numberOfStones
+	 */
+	public int getNumberOfStartingStones() {
+		return this.startingStones;
 	}
 
 	/**

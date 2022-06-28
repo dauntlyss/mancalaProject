@@ -158,7 +158,7 @@ public class MancalaPane extends BorderPane {
 				MancalaPane.this.pnComputerPlayer.setDisable(false);
 				MancalaPane.this.pnChooseFirstPlayer.setDisable(true);
 				
-				MancalaPane.this.theGame.startNewGame(NewGamePane.this.theComputer, 1);
+				MancalaPane.this.theGame.startNewGame(NewGamePane.this.theComputer, NewGamePane.this.theGame.getNumberOfStartingStones());
 			}
 		}
 
@@ -174,7 +174,7 @@ public class MancalaPane extends BorderPane {
 			public void handle(ActionEvent event) {
 				MancalaPane.this.pnHumanPlayer.setDisable(false);
 				MancalaPane.this.pnChooseFirstPlayer.setDisable(true);
-				MancalaPane.this.theGame.startNewGame(NewGamePane.this.theHuman, 1);
+				MancalaPane.this.theGame.startNewGame(NewGamePane.this.theHuman, NewGamePane.this.theGame.getNumberOfStartingStones());
 
 			}
 		}
@@ -206,7 +206,9 @@ public class MancalaPane extends BorderPane {
 			this.setButton.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					System.exit(0);
+					int stones = Integer.parseInt((NumberOfStonesPane.this.numberOfStones.getText()));
+					MancalaPane.this.theGame.setNumberOfStartingStones(stones);
+					MancalaPane.this.pnChooseNumberOfStones.setDisable(true);
 				}
 			});
 
