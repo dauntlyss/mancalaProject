@@ -52,6 +52,7 @@ public class StatusPane extends GridPane implements InvalidationListener {
 		HBox bottomBox = new HBox();
 		bottomBox.getStyleClass().add("box-padding");
 		bottomBox.getStyleClass().add("box-center");
+		bottomBox.getStyleClass().add("status-message");
 		this.lblTurnStatus = new Label(this.theGame.getTurnStatusUpdate());
 		bottomBox.getChildren().add(this.lblTurnStatus);
 		this.add(bottomBox, 0, 2);

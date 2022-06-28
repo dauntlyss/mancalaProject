@@ -20,3 +20,9 @@
 .bg-highlight-style {
     -fx-background-color:  lightblue;
 }
+
+.status-message {
+	-fx-dark-text-color: navy;
+  	-fx-mid-text-color: blue;
+  	-fx-light-text-color: skyblue;
+}
