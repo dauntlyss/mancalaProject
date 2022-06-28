@@ -190,7 +190,8 @@ public class Game implements Observable {
 		
 		if (this.isGameOver) {
 			this.determineWinner();
-			this.currentPlayerObject.setValue(null);			
+			this.currentPlayerObject.setValue(null);
+			this.turnStatusUpdate = "";
 		} else {
 			this.swapWhoseTurn();
 		}
