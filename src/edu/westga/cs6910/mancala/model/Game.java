@@ -191,7 +191,6 @@ public class Game implements Observable {
 		if (this.isGameOver) {
 			this.determineWinner();
 			this.currentPlayerObject.setValue(null);
-			this.turnStatusUpdate = "";
 		} else {
 			this.swapWhoseTurn();
 		}
@@ -222,6 +221,7 @@ public class Game implements Observable {
 
 		if (humanStoneCount == 0 || computerStoneCount == 0) {
 			this.isGameOver = true;
+			this.turnStatusUpdate = "";
 		} else {
 			this.isGameOver = false;
 		}
