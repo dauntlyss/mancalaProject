@@ -44,7 +44,7 @@ public class Game implements Observable {
 	 * @param firstPlayer the Player who takes the first turn
 	 * @param numberOfStones number of stones to start with
 	 * 
-	 * @require firstPlayer != null &&
+	 * @require firstPlayer != null && numberOfStones > 0
 	 * 
 	 * @ensures whoseTurn().equals(firstPlayer)
 	 */
@@ -67,7 +67,6 @@ public class Game implements Observable {
 		int amountOfStones = this.theBoard[pitNumber];
 		this.theBoard[pitNumber] = 0;
 		int stonesRemaining = 0;
-		int pitToSkip = 0;
 		
 		for (int index = 0; stonesRemaining < amountOfStones; stonesRemaining++) {
 			if (pitNumber + index + 1 < this.getBoardSize()
@@ -90,18 +89,28 @@ public class Game implements Observable {
 			if (this.determineIfGetExtraTurn(pitNumber, index) && stonesRemaining + 1 == amountOfStones) {
 				this.turnStatusUpdate = this.currentPlayerObject.getValue().getName() + " gets a free turn for landing in the store!";
 				this.swapWhoseTurn();
-			} else {
-				this.turnStatusUpdate = "";
-			}
-			
+			} else if (!this.determineIfGetExtraTurn(pitNumber, index) && stonesRemaining + 1 == amountOfStones
+                    && this.theBoard[pitNumber + index] == 1 && this.getCurrentPlayer().equals(this.theHuman)
+                    && this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] != 0) {
+                this.theBoard[(this.getBoardSize() / 2) - 1] += this.theBoard[(this.getBoardSize() - 2)
+                        - (pitNumber + index)];
+                this.theBoard[(this.getBoardSize() / 2) - 1]++;
+                this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] = 0;
+                this.theBoard[pitNumber + index] = 0;
+                this.turnStatusUpdate = this.theHuman.getName() + " captured all the stones in pit " + ((this.getBoardSize() - 2) - (pitNumber + index)) + ".";
+            } else if (!this.determineIfGetExtraTurn(pitNumber, index) && stonesRemaining + 1 == amountOfStones
+                    && this.theBoard[pitNumber + index] == 1 && this.getCurrentPlayer().equals(this.theComputer)
+                    && this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] != 0) {
+                this.theBoard[this.getBoardSize() - 1] += this.theBoard[(this.getBoardSize() - 2)
+                        - (pitNumber + index)];
+                this.theBoard[this.getBoardSize() - 1]++;
+                this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] = 0;
+                this.theBoard[pitNumber + index] = 0;
+                this.turnStatusUpdate = this.theComputer.getName() + " captured all the stones in pit " + ((this.getBoardSize() - 2) - (pitNumber + index)) + ".";
+            } else {
+                this.turnStatusUpdate = "";
+            }
 		}
-		
-		if (pitNumber < this.theBoard.length / 2) {
-			pitToSkip = this.theBoard.length - 1;
-		} else {
-			pitToSkip = this.theBoard.length / 2 - 1;
-		}
-		
 	}
 
 	/**
@@ -221,7 +230,7 @@ public class Game implements Observable {
 
 		if (humanStoneCount == 0 || computerStoneCount == 0) {
 			this.isGameOver = true;
-			this.turnStatusUpdate = "";
+//			this.turnStatusUpdate = "";
 		} else {
 			this.isGameOver = false;
 		}
