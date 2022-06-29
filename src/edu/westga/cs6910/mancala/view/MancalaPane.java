@@ -222,7 +222,6 @@ public class MancalaPane extends BorderPane {
 					}
 				}
 			});
-
 		}
 	}
 	
@@ -263,24 +262,30 @@ public class MancalaPane extends BorderPane {
 				}
 			});
 			
-			this.nearStrategy = new RadioMenuItem("_Near");
-			this.nearStrategy.setAccelerator(KeyCombination.keyCombination("shortcut + N"));
-			this.nearStrategy.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					MenuPane.this.theGame.getComputerPlayer().setStrategy(new NearStrategy());
-				}
-			});
+			this.getNearStrategy();
+			this.getFarStrategy();
+			this.getRandomStrategy();
 			
-			this.farStrategy = new RadioMenuItem("F_ar");
-			this.farStrategy.setAccelerator(KeyCombination.keyCombination("shortcut + A"));
-			this.farStrategy.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					MenuPane.this.theGame.getComputerPlayer().setStrategy(new FarStrategy());
-				}
-			});
+			this.getToggleGroup(this.nearStrategy, this.farStrategy, this.randomStrategy);
 			
+			this.computerPlayerMenu.getItems().addAll(this.nearStrategy, this.farStrategy, this.randomStrategy);
+			this.computerPlayerMenu.setMnemonicParsing(true);
+			this.menuBar.getMenus().addAll(this.gameMenu, this.computerPlayerMenu);
+			this.menuBar.prefWidthProperty().bind(this.theMancalaPane.widthProperty());
+			this.add(this.menuBar, 0, 0);
+		}
+		
+		private ToggleGroup getToggleGroup(RadioMenuItem strategy1, RadioMenuItem  strategy2, RadioMenuItem strategy3) {
+			ToggleGroup toggleGroup = new ToggleGroup();
+			strategy1.setToggleGroup(toggleGroup);
+			strategy1.setSelected(true);
+			strategy2.setToggleGroup(toggleGroup);
+			strategy3.setToggleGroup(toggleGroup);
+			
+			return toggleGroup;
+		}
+		
+		private void getRandomStrategy() {
 			this.randomStrategy = new RadioMenuItem("_Random");
 			this.randomStrategy.setAccelerator(KeyCombination.keyCombination("shortcut + R"));
 			this.randomStrategy.setOnAction(new EventHandler<ActionEvent>() {
@@ -289,18 +294,28 @@ public class MancalaPane extends BorderPane {
 					MenuPane.this.theGame.getComputerPlayer().setStrategy(new RandomStrategy());
 				}
 			});
-			
-			ToggleGroup toggleGroup = new ToggleGroup();
-			this.nearStrategy.setToggleGroup(toggleGroup);
-			this.nearStrategy.setSelected(true);
-			this.farStrategy.setToggleGroup(toggleGroup);
-			this.randomStrategy.setToggleGroup(toggleGroup);
-			
-			this.computerPlayerMenu.getItems().addAll(this.nearStrategy, this.farStrategy, this.randomStrategy);
-			this.computerPlayerMenu.setMnemonicParsing(true);
-			this.menuBar.getMenus().addAll(this.gameMenu, this.computerPlayerMenu);
-			this.menuBar.prefWidthProperty().bind(this.theMancalaPane.widthProperty());
-			this.add(this.menuBar, 0, 0);
-		}	
+		}
+		
+		private void getNearStrategy() {
+			this.nearStrategy = new RadioMenuItem("_Near");
+			this.nearStrategy.setAccelerator(KeyCombination.keyCombination("shortcut + N"));
+			this.nearStrategy.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					MenuPane.this.theGame.getComputerPlayer().setStrategy(new NearStrategy());
+				}
+			});
+		}
+		
+		private void getFarStrategy() {
+			this.farStrategy = new RadioMenuItem("F_ar");
+			this.farStrategy.setAccelerator(KeyCombination.keyCombination("shortcut + A"));
+			this.farStrategy.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					MenuPane.this.theGame.getComputerPlayer().setStrategy(new FarStrategy());
+				}
+			});
+		}
 	}
 }

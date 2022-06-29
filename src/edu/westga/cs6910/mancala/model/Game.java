@@ -63,12 +63,10 @@ public class Game implements Observable {
 		if (pitNumber < 0) {
 			throw new IllegalArgumentException("Pit number cannot be negative");
 		}
-
 		int amountOfStones = this.theBoard[pitNumber];
 		this.theBoard[pitNumber] = 0;
-		int stonesRemaining = 0;
-		
-		for (int index = 0; stonesRemaining < amountOfStones; stonesRemaining++) {
+		int stonesPlaced = 0;
+		for (int index = 0; stonesPlaced < amountOfStones; stonesPlaced++) {
 			if (pitNumber + index + 1 < this.getBoardSize()
                     && !((this.getCurrentPlayer().equals(this.theHuman) && pitNumber + index + 1 == this.getBoardSize() - 1)
                             || (this.getCurrentPlayer().equals(this.theComputer)
@@ -78,7 +76,7 @@ public class Game implements Observable {
             } else if (((this.getCurrentPlayer().equals(this.theHuman) && pitNumber + index + 1 == this.getBoardSize() - 1)
                     || (this.getCurrentPlayer().equals(this.theComputer)
                             && pitNumber + index + 1 == this.theBoard.length / 2 - 1))) {
-                stonesRemaining--;
+                stonesPlaced--;
                 index++;
             } else {
                 pitNumber = 0;
@@ -86,30 +84,7 @@ public class Game implements Observable {
                 this.theBoard[pitNumber + index]++;
             } 
 			
-			if (this.determineIfGetExtraTurn(pitNumber, index) && stonesRemaining + 1 == amountOfStones) {
-				this.turnStatusUpdate = this.currentPlayerObject.getValue().getName() + " gets a free turn for landing in the store!";
-				this.swapWhoseTurn();
-			} else if (!this.determineIfGetExtraTurn(pitNumber, index) && stonesRemaining + 1 == amountOfStones
-                    && this.theBoard[pitNumber + index] == 1 && this.getCurrentPlayer().equals(this.theHuman)
-                    && this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] != 0 && (pitNumber + index) < this.getBoardSize() / 2 - 1) {
-                this.theBoard[(this.getBoardSize() / 2) - 1] += this.theBoard[(this.getBoardSize() - 2)
-                        - (pitNumber + index)];
-                this.theBoard[(this.getBoardSize() / 2) - 1]++;
-                this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] = 0;
-                this.theBoard[pitNumber + index] = 0;
-                this.turnStatusUpdate = this.theHuman.getName() + " captured all the stones in pit " + ((this.getBoardSize() - 2) - (pitNumber + index)) + ".";
-            } else if (!this.determineIfGetExtraTurn(pitNumber, index) && stonesRemaining + 1 == amountOfStones
-                    && this.theBoard[pitNumber + index] == 1 && this.getCurrentPlayer().equals(this.theComputer)
-                    && this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] != 0 && (pitNumber + index) > this.getBoardSize() / 2 - 1) {
-                this.theBoard[this.getBoardSize() - 1] += this.theBoard[(this.getBoardSize() - 2)
-                        - (pitNumber + index)];
-                this.theBoard[this.getBoardSize() - 1]++;
-                this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] = 0;
-                this.theBoard[pitNumber + index] = 0;
-                this.turnStatusUpdate = this.theComputer.getName() + " captured all the stones in pit " + ((this.getBoardSize() - 2) - (pitNumber + index)) + ".";
-            } else {
-                this.turnStatusUpdate = "";
-            }
+			this.determineTurnStatusUpdate(pitNumber, index, stonesPlaced, amountOfStones);
 		}
 	}
 
@@ -216,6 +191,45 @@ public class Game implements Observable {
 		}
 		return extraTurn;
 	}
+	
+	private void determineTurnStatusUpdate(int pitNumber, int index, int stonesPlaced, int amountOfStones) {
+		
+		if (this.determineIfGetExtraTurn(pitNumber, index) && stonesPlaced + 1 == amountOfStones) {
+			this.turnStatusUpdate = this.currentPlayerObject.getValue().getName() + " gets a free turn for landing in the store!";
+			this.swapWhoseTurn();
+			
+		} else if (!this.determineIfGetExtraTurn(pitNumber, index) && stonesPlaced + 1 == amountOfStones
+                && this.theBoard[pitNumber + index] == 1 && this.getCurrentPlayer().equals(this.theHuman)
+                && this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] != 0 && (pitNumber + index) < this.getBoardSize() / 2 - 1) {
+			this.humanCapture(pitNumber, index);
+			
+        } else if (!this.determineIfGetExtraTurn(pitNumber, index) && stonesPlaced + 1 == amountOfStones
+                && this.theBoard[pitNumber + index] == 1 && this.getCurrentPlayer().equals(this.theComputer)
+                && this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] != 0 && (pitNumber + index) > this.getBoardSize() / 2 - 1) {
+            this.computerCapture(pitNumber, index);  
+            
+        } else {
+            this.turnStatusUpdate = "";
+        }
+	}
+	
+	private void humanCapture(int pitNumber, int index) {
+        this.theBoard[(this.getBoardSize() / 2) - 1] += this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)];
+        this.theBoard[(this.getBoardSize() / 2) - 1]++;
+        this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] = 0;
+        this.theBoard[pitNumber + index] = 0;
+        this.turnStatusUpdate = this.theHuman.getName() + " captured all the stones in pit " 
+        		+ ((this.getBoardSize() - 2) - (pitNumber + index)) + "!";
+	}
+	
+	private void computerCapture(int pitNumber, int index) {
+		this.theBoard[this.getBoardSize() - 1] += this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)];
+		this.theBoard[this.getBoardSize() - 1]++;
+		this.theBoard[(this.getBoardSize() - 2) - (pitNumber + index)] = 0;
+		this.theBoard[pitNumber + index] = 0;
+		this.turnStatusUpdate = this.theComputer.getName() + " captured all the stones in pit "
+				+ ((this.getBoardSize() - 2) - (pitNumber + index)) + "!";
+	}
 
 	private void determineIfGameIsOver() {
 		int humanStoneCount = 0;
@@ -230,7 +244,6 @@ public class Game implements Observable {
 
 		if (humanStoneCount == 0 || computerStoneCount == 0) {
 			this.isGameOver = true;
-//			this.turnStatusUpdate = "";
 		} else {
 			this.isGameOver = false;
 		}
