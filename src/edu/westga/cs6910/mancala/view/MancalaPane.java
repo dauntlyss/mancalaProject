@@ -219,6 +219,7 @@ public class MancalaPane extends BorderPane {
 						noStonesAlert.setTitle("Mancala");
 						noStonesAlert.setHeaderText("Please enter a valid number greater than 0.");
 						noStonesAlert.showAndWait();
+						NumberOfStonesPane.this.numberOfStones.clear();
 					}
 				}
 			});
