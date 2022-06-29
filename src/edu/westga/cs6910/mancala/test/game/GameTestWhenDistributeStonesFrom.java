@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.mancala.model.ComputerPlayer;
 import edu.westga.cs6910.mancala.model.Game;
-import edu.westga.cs6910.mancala.model.HumanPlayer;
 
 /**
  * Test to confirm the game class is working as expected.
@@ -107,34 +106,6 @@ public class GameTestWhenDistributeStonesFrom {
 		newGame.distributeStonesFrom(0);
 		assertEquals(0, newGame.getStones(0));
 		
-	}
-	
-	/**
-	 * Test method for distributeStonesFrom(int) method, tests that proper turnStatus message is generated.
-	 */
-	@Test
-	public void testDistributeStonesFromDistributesStonesFromPit0To1GeneratesNoTurnStatusMessage() {
-		Game newGame = new Game();
-		
-		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
-		newGame.startNewGame(simpleComputer, 1);
-		
-		newGame.distributeStonesFrom(0);
-		assertEquals("", newGame.getTurnStatusUpdate());
-	}
-	
-	/**
-	 * Test method for distributeStonesFrom(int) method, tests that proper turnStatus message is generated.
-	 */
-	@Test
-	public void testDistributeStonesFromDistributesStonesFromPit0ToStoreGeneratesExtraTurnStatusMessage() {
-		Game newGame = new Game();
-		
-		HumanPlayer simpleHuman = new HumanPlayer("Alyssa", newGame);
-		newGame.startNewGame(simpleHuman, 1);
-		
-		newGame.play(2);
-		assertEquals("", newGame.getTurnStatusUpdate());
 	}
 	
 	/**
