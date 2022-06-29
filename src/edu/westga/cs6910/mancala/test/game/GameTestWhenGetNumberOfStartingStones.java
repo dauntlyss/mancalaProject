@@ -1,23 +1,27 @@
 package edu.westga.cs6910.mancala.test.game;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import edu.westga.cs6910.mancala.model.Game;
+
 /**
- * [Description...]
+ * Test to confirm the game class is working as expected.
  *
  * @author Alyssa Harris
  * @version Jun 28, 2022
  */
-class GameTestWhenGetNumberOfStartingStones {
+public class GameTestWhenGetNumberOfStartingStones {
 
 	/**
-	 * Test method for {@link edu.westga.cs6910.mancala.model.Game#setNumberOfStartingStones(int)}.
+	 * Test method for getNumberOfStartingStones(int).
 	 */
 	@Test
-	void testSetNumberOfStartingStones() {
-		fail("Not yet implemented");
-	}
+	public void testGetNumberOfStartingStonesIsExpectedNumber() {
+		Game newGame = new Game();
+		newGame.startNewGame(newGame.getHumanPlayer(), 3);
 
+		assertEquals(3, newGame.getNumberOfStartingStones());
+	}
 }

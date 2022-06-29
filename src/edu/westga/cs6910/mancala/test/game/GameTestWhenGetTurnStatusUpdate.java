@@ -21,7 +21,7 @@ public class GameTestWhenGetTurnStatusUpdate {
 	@Test
 	public void testPlayFromOccupiedPitToOccupiedPitGeneratesNoTurnStatusMessage() {
 		Game newGame = new Game();
-		newGame.startNewGame(newGame.getHumanPlayer(), 3);
+		newGame.startNewGame(newGame.getHumanPlayer(), 2);
 		
 		newGame.play(0);
 		assertEquals("", newGame.getTurnStatusUpdate());
