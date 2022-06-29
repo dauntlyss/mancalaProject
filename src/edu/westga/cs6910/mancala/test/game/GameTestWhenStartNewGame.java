@@ -24,8 +24,7 @@ public class GameTestWhenStartNewGame {
 		Game newGame = new Game();
 		ComputerPlayer simpleComputer = new ComputerPlayer(newGame);
 		newGame.startNewGame(simpleComputer, 1);
-		assertEquals(simpleComputer, newGame.getCurrentPlayer());
-		
+		assertEquals(simpleComputer, newGame.getCurrentPlayer());	
 	}
 	
 	/**
@@ -36,8 +35,17 @@ public class GameTestWhenStartNewGame {
 		Game newGame = new Game();
 		HumanPlayer realHumanPlayer = new HumanPlayer("Alyssa", newGame);
 		newGame.startNewGame(realHumanPlayer, 1);
-		assertEquals(realHumanPlayer, newGame.getCurrentPlayer());
-		
+		assertEquals(realHumanPlayer, newGame.getCurrentPlayer());	
 	}
-
+	
+	/**
+	 * Test method for Game classes startNewGame() method starting stones amount.
+	 */
+	@Test
+	public void testStartNewGameWillStartNewGameWithSpecifiedStoneAmount() {
+		Game newGame = new Game();
+		HumanPlayer realHumanPlayer = new HumanPlayer("Alyssa", newGame);
+		newGame.startNewGame(realHumanPlayer, 1);
+		assertEquals(1, newGame.getNumberOfStartingStones());
+	}
 }

@@ -49,7 +49,8 @@ public class Game implements Observable {
 	 * @ensures whoseTurn().equals(firstPlayer)
 	 */
 	public void startNewGame(Player firstPlayer, int numberOfStones) {
-		this.resetBoard(numberOfStones);
+		this.startingStones = numberOfStones;
+		this.resetBoard(this.startingStones);
 		this.currentPlayerObject.setValue(firstPlayer);
 	}
 
