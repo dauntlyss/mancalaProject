@@ -44,7 +44,7 @@ public class GameTestWhenGetCurrentPlayer {
 	 * Test method for Game classes getCurrentPlayer() to see if it returns the expected player object.
 	 */
 	@Test
-	public void testGetCurrentPlayerShouldBeSameasStartingPlayerAfterEvenNumberOfRounds() {
+	public void testGetCurrentPlayerShouldBeSameasStartingPlayerAfterOddNumberOfRounds() {
 		Game newGame = new Game();
 		
 		HumanPlayer simpleHuman = newGame.getHumanPlayer();
@@ -52,6 +52,7 @@ public class GameTestWhenGetCurrentPlayer {
 		newGame.startNewGame(simpleHuman, 1);
 		newGame.play(0);
 		newGame.play(5);
+		newGame.play(2);
 		
 		assertEquals(simpleHuman, newGame.getCurrentPlayer());
 	}
