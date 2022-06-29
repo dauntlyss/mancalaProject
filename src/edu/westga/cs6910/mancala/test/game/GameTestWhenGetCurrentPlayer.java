@@ -56,5 +56,4 @@ public class GameTestWhenGetCurrentPlayer {
 		
 		assertEquals(simpleHuman, newGame.getCurrentPlayer());
 	}
-
 }

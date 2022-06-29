@@ -33,4 +33,13 @@ public class GameTestWhenCreateGame {
 		Game newGame = new Game();
 		assertEquals(8, newGame.getBoardSize());
 	}
+	
+	/**
+	 * Test method for Game classes constructor method and tests turn status string at creation.
+	 */
+	@Test
+	public void testNewGameShouldBlankTurnStatus() {
+		Game newGame = new Game();
+		assertEquals("", newGame.getTurnStatusUpdate());
+	}
 }
